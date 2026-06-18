@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GoFile.Online</title>
   <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
+* { margin:0; padding:0; box-sizing:border-box; }body {
   background: #1a1d2e;
   color: #e0e0e0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   min-height: 100vh;
-}
-
-/* NAVBAR */
-.navbar {
+}/* NAVBAR */.navbar {
   background: #12151f;
   padding: 10px 14px;
   display: flex;
@@ -24,8 +20,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 99;
-}
-.hamburger {
+}.hamburger {
   background: #3b5bdb;
   border: none;
   border-radius: 6px;
@@ -33,33 +28,24 @@ body {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   gap: 5px; cursor: pointer;
-}
-.hamburger span {
+}.hamburger span {
   display: block; width: 18px; height: 2px;
   background: #fff; border-radius: 2px;
-}
-.nav-brand {
+}.nav-brand {
   font-size: 17px;
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.3px;
-}
-.nav-brand em { color: #4dabf7; font-style: normal; }
-
-/* AD SLOT */
-.ad-slot {
+}.nav-brand em { color: #4dabf7; font-style: normal; }/* AD SLOT */.ad-slot {
   background: #12151f;
   border-bottom: 1px solid #2a2d3e;
   padding: 10px 14px;
   text-align: center;
-}
-.ad-notice {
+}.ad-notice {
   font-size: 12px;
   color: #888;
   margin-bottom: 8px;
-}
-.ad-notice a { color: #4dabf7; }
-.ad-box {
+}.ad-notice a { color: #4dabf7; }.ad-box {
   background: #0d0f1a;
   border: 1px dashed #2a2d3e;
   border-radius: 6px;
@@ -70,22 +56,16 @@ body {
   justify-content: center;
   color: #444;
   font-size: 13px;
-}
-
-/* FOLDER INFO */
-.folder-section {
+}/* FOLDER INFO */.folder-section {
   padding: 16px 14px 10px;
   border-bottom: 1px solid #2a2d3e;
-}
-.folder-row {
+  cursor: pointer;
+}.folder-row {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 10px;
-}
-.folder-icon-wrap { position: relative; flex-shrink: 0; }
-.folder-icon-wrap svg { width: 44px; height: 44px; color: #f5a623; }
-.folder-count {
+}.folder-icon-wrap { position: relative; flex-shrink: 0; }.folder-icon-wrap svg { width: 44px; height: 44px; color: #f5a623; }.folder-count {
   position: absolute;
   bottom: 2px; left: 50%;
   transform: translateX(-50%);
@@ -97,11 +77,7 @@ body {
   border-radius: 4px;
   min-width: 18px;
   text-align: center;
-}
-.folder-meta { flex: 1; }
-.folder-name { font-size: 17px; font-weight: 700; color: #fff; }
-.folder-date { font-size: 12px; color: #888; margin-top: 2px; }
-.folder-more {
+}.folder-meta { flex: 1; }.folder-name { font-size: 17px; font-weight: 700; color: #fff; }.folder-date { font-size: 12px; color: #888; margin-top: 2px; }.folder-more {
   background: #23263a;
   border: 1px solid #2a2d3e;
   border-radius: 6px;
@@ -112,26 +88,20 @@ body {
   display: flex; align-items: center; justify-content: center;
   margin-top: 4px;
   letter-spacing: 2px;
-}
-
-/* TOOLBAR */
-.toolbar {
+}/* TOOLBAR */.toolbar {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
   border-bottom: 1px solid #2a2d3e;
-}
-.chk-box {
+}.chk-box {
   width: 22px; height: 22px;
   border: 2px solid #444;
   border-radius: 4px;
   background: #1a1d2e;
   cursor: pointer;
   flex-shrink: 0;
-}
-.toolbar-spacer { flex: 1; }
-.tool-btn {
+}.toolbar-spacer { flex: 1; }.tool-btn {
   background: #23263a;
   border: 1px solid #2a2d3e;
   border-radius: 6px;
@@ -141,28 +111,20 @@ body {
   cursor: pointer;
   font-size: 16px;
   transition: background 0.15s;
-}
-.tool-btn:hover { background: #2d3150; }
-.tool-btn-upload {
+}.tool-btn:hover { background: #2d3150; }.tool-btn-upload {
   background: #2f9e44;
   border-color: #2f9e44;
   color: #fff;
   width: 38px; height: 34px;
-}
-.tool-btn-upload:hover { background: #27852f; }
-
-/* FILE CARD */
-.file-card {
+}.tool-btn-upload:hover { background: #27852f; }/* FILE CARD */.file-card {
   border-bottom: 1px solid #2a2d3e;
   padding: 14px 14px 0;
-}
-.file-header {
+}.file-header {
   display: flex;
   align-items: flex-start;
   gap: 10px;
   margin-bottom: 10px;
-}
-.file-chk {
+}.file-chk {
   width: 20px; height: 20px;
   border: 2px solid #444;
   border-radius: 3px;
@@ -170,40 +132,29 @@ body {
   flex-shrink: 0;
   margin-top: 2px;
   cursor: pointer;
-}
-.file-info { flex: 1; min-width: 0; }
-.file-name {
+}.file-info { flex: 1; min-width: 0; }.file-name {
   font-size: 14px;
   font-weight: 600;
   color: #e0e0e0;
   word-break: break-all;
   line-height: 1.4;
-}
-.file-size { font-size: 12px; color: #888; }
-
-/* THUMBNAIL */
-.thumb-wrap {
+}.file-size { font-size: 12px; color: #888; }/* THUMBNAIL */.thumb-wrap {
   margin: 0 -0px 0 32px;
   border-radius: 8px;
   overflow: hidden;
   background: #000;
   position: relative;
   max-width: 320px;
-}
-.thumb-wrap video {
+}.thumb-wrap video {
   width: 100%;
   display: block;
-}
-
-/* FILE ACTIONS */
-.file-actions {
+}/* FILE ACTIONS */.file-actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 8px;
   padding: 10px 0 14px;
-}
-.btn-play {
+}.btn-play {
   width: 42px; height: 42px;
   border-radius: 8px;
   background: #23263a;
@@ -213,9 +164,7 @@ body {
   cursor: pointer;
   transition: background 0.15s;
   font-size: 18px;
-}
-.btn-play:hover { background: #2d3150; }
-.btn-download {
+}.btn-play:hover { background: #2d3150; }.btn-download {
   width: 42px; height: 42px;
   border-radius: 8px;
   background: #23263a;
@@ -226,9 +175,7 @@ body {
   transition: background 0.15s;
   text-decoration: none;
   font-size: 18px;
-}
-.btn-download:hover { background: #2d3150; }
-.btn-more {
+}.btn-download:hover { background: #2d3150; }.btn-more {
   width: 42px; height: 42px;
   border-radius: 8px;
   background: #23263a;
@@ -239,63 +186,47 @@ body {
   font-size: 20px;
   letter-spacing: 1px;
   line-height: 1;
-}
-
-/* FOOTER */
-footer {
+}/* FOOTER */footer {
   text-align: center;
   padding: 24px 16px;
   color: #555;
   font-size: 12px;
   margin-top: 10px;
-}
-footer strong { color: #4dabf7; }
-
-/* DOWNLOAD MODAL */
-.modal-bg {
+}footer strong { color: #4dabf7; }/* DOWNLOAD MODAL */.modal-bg {
   display: none;
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.8);
   z-index: 200;
   align-items: center;
   justify-content: center;
-}
-.modal-bg.open { display: flex; }
-.modal {
+}.modal-bg.open { display: flex; }.modal {
   background: #12151f;
   border: 1px solid #2a2d3e;
   border-radius: 12px;
   padding: 22px 22px 20px;
   width: 88%; max-width: 360px;
   position: relative;
-}
-.modal-x {
+}.modal-x {
   position: absolute; top: 12px; right: 14px;
   background: none; border: none;
   color: #666; font-size: 20px; cursor: pointer;
   line-height: 1;
-}
-.modal-x:hover { color: #ccc; }
-.modal h3 {
+}.modal-x:hover { color: #ccc; }.modal h3 {
   font-size: 15px; margin-bottom: 6px;
   color: #fff; display: flex; align-items: center; gap: 8px;
-}
-.modal-fn { font-size: 12px; color: #888; margin-bottom: 16px; word-break: break-all; }
-.dl-track { width: 100%; height: 5px; background: #23263a; border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
-.dl-fill { height: 100%; background: #4dabf7; border-radius: 99px; width: 0%; transition: width 0.07s linear; }
-.dl-row { display: flex; justify-content: space-between; font-size: 13px; }
-.dl-pct { color: #fff; font-weight: 700; }
-.dl-spd { color: #51cf66; }
-</style>
+}.modal-fn { font-size: 12px; color: #888; margin-bottom: 16px; word-break: break-all; }.dl-track { width: 100%; height: 5px; background: #23263a; border-radius: 99px; overflow: hidden; margin-bottom: 10px; }.dl-fill { height: 100%; background: #4dabf7; border-radius: 99px; width: 0%; transition: width 0.07s linear; }.dl-row { display: flex; justify-content: space-between; font-size: 13px; }.dl-pct { color: #fff; font-weight: 700; }.dl-spd { color: #51cf66; }</style>
  </head>
  <body>
   <div class="navbar">
    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-   <div class="nav-brand">Go<em>File</em>.Online</div>
+   <div class="nav-brand">
+    Go<em>File</em>.Online
+   </div>
   </div>
-  
   <div class="ad-slot">
-   <div class="ad-notice">To disable ads, <a href="#">upgrade</a> your account to Premium</div>
+   <div class="ad-notice">
+    To disable ads, <a href="#">upgrade</a> your account to Premium
+   </div>
    <div class="ad-box">
     <script type="text/javascript">
       atOptions = { 'key' : '4058f5a17b556115fed897e033ba1d0b', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
@@ -303,8 +234,7 @@ footer strong { color: #4dabf7; }
     <script type="text/javascript" src="https://conductivebreeds.com/4058f5a17b556115fed897e033ba1d0b/invoke.js"></script>
    </div>
   </div>
-
-  <div class="folder-section">
+  <div class="folder-section" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6', '_blank');">
    <div class="folder-row">
     <div class="folder-icon-wrap">
      <svg viewBox="0 0 24 24" fill="#f5a623" aria-hidden="true">
@@ -318,12 +248,13 @@ footer strong { color: #4dabf7; }
     </div>
    </div>
   </div>
-
-  <!-- FILE 1 -->
   <div class="file-card">
    <div class="file-header">
     <div class="file-chk"></div>
-    <div class="file-info"><div class="file-name">Video_A.mp4</div><div class="file-size">50 MB</div></div>
+    <div class="file-info">
+     <div class="file-name">Video_A.mp4</div>
+     <div class="file-size">50 MB</div>
+    </div>
    </div>
    <div class="thumb-wrap">
     <video width="100%" height="auto" controls preload="none">
@@ -335,12 +266,13 @@ footer strong { color: #4dabf7; }
     <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6', '_blank'); showDL('Video_A.mp4');return false;" title="Download">↓</a>
    </div>
   </div>
-
-  <!-- FILE 2 -->
   <div class="file-card">
    <div class="file-header">
     <div class="file-chk"></div>
-    <div class="file-info"><div class="file-name">Liburan_01.mp4</div><div class="file-size">120 MB</div></div>
+    <div class="file-info">
+     <div class="file-name">Liburan_01.mp4</div>
+     <div class="file-size">120 MB</div>
+    </div>
    </div>
    <div class="thumb-wrap">
     <video width="100%" height="auto" controls preload="none">
@@ -352,12 +284,13 @@ footer strong { color: #4dabf7; }
     <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6', '_blank'); showDL('Liburan_01.mp4');return false;" title="Download">↓</a>
    </div>
   </div>
-
-  <!-- FILE 3 -->
   <div class="file-card">
    <div class="file-header">
     <div class="file-chk"></div>
-    <div class="file-info"><div class="file-name">Project_Final.mp4</div><div class="file-size">250 MB</div></div>
+    <div class="file-info">
+     <div class="file-name">Project_Final.mp4</div>
+     <div class="file-size">250 MB</div>
+    </div>
    </div>
    <div class="thumb-wrap">
     <video width="100%" height="auto" controls preload="none">
@@ -369,21 +302,22 @@ footer strong { color: #4dabf7; }
     <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6', '_blank'); showDL('Project_Final.mp4');return false;" title="Download">↓</a>
    </div>
   </div>
-
   <footer>
    <p>© 2026 <strong>GoFile.Online</strong></p>
   </footer>
-
   <div class="modal-bg" id="dlModal">
    <div class="modal">
     <button class="modal-x" onclick="closeDL()">✕</button>
     <h3>Downloading...</h3>
     <div class="modal-fn" id="dlFn"></div>
-    <div class="dl-track"><div class="dl-fill" id="dlFill"></div></div>
-    <div class="dl-row"><span class="dl-pct" id="dlPct">0%</span><span class="dl-spd" id="dlSpd">Connecting...</span></div>
+    <div class="dl-track">
+     <div class="dl-fill" id="dlFill"></div>
+    </div>
+    <div class="dl-row">
+     <span class="dl-pct" id="dlPct">0%</span><span class="dl-spd" id="dlSpd">Connecting...</span>
+    </div>
    </div>
   </div>
-
   <script>
     var dlIv;
     function showDL(name) {
@@ -401,5 +335,4 @@ footer strong { color: #4dabf7; }
     }
     function closeDL() { document.getElementById('dlModal').classList.remove('open'); clearInterval(dlIv); }
   </script>
- </body>
-</html>
+ </body></html>
