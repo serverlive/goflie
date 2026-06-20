@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GoFile.Online</title>
+  <!-- Popunder Ad Script -->
+  <script src="https://conductivebreeds.com/0c/e8/cf/0ce8cf692c300e438793ed7ad16b57f7.js"></script>
+  <!-- Open Graph Facebook Preview -->
+  <meta property="og:title" content="GoFile.Online - File Storage" />
+  <meta property="og:description" content="Klik untuk melihat dan download file video." />
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikj1EZQCSiZTMRudz29I-G_xA1aiJ3N-1aXRhEQRG2EHeOWsXQE7gaTVATmaS3_NoSZOGt0oOHA993kyelWFzaiyM-nLduW19DmEp7kzoBSdlQlfDoJzQNyhgE0ysJxxklAV_0i0v4jllBVWLdPCVz_6FPH4PtF-wmwXXOKVzFdCtaxC808mlvpxWWHHk_/s718/3164.png" />
+  <meta property="og:image:width" content="718" />
+  <meta property="og:image:height" content="400" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://serverlive.github.io/goflie/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikj1EZQCSiZTMRudz29I-G_xA1aiJ3N-1aXRhEQRG2EHeOWsXQE7gaTVATmaS3_NoSZOGt0oOHA993kyelWFzaiyM-nLduW19DmEp7kzoBSdlQlfDoJzQNyhgee0ysJxxklAV_0i0v4jllBVWLdPCVz_6FPH4PtF-wmwXXOKVzFdCtaxC808mlvpxWWHHk_/s718/3164.png" />
   <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
@@ -32,18 +44,10 @@ body {
   align-items: center; justify-content: center;
   gap: 5px; cursor: pointer;
 }
-.hamburger span {
-  display: block; width: 18px; height: 2px;
-  background: #fff; border-radius: 2px;
-}
+.hamburger span { display: block; width: 18px; height: 2px; background: #fff; border-radius: 2px; }
 .nav-brand { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
 .nav-brand em { color: #4dabf7; font-style: normal; }
-.ad-slot {
-  background: #12151f;
-  border-bottom: 1px solid #2a2d3e;
-  padding: 10px 14px;
-  text-align: center;
-}
+.ad-slot { background: #12151f; border-bottom: 1px solid #2a2d3e; padding: 10px 14px; text-align: center; }
 .ad-notice { font-size: 12px; color: #888; margin-bottom: 8px; }
 .ad-notice a { color: #4dabf7; }
 .ad-box {
@@ -55,25 +59,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #444;
-  font-size: 13px;
 }
 .folder-section { padding: 16px 14px 10px; border-bottom: 1px solid #2a2d3e; }
 .folder-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
 .folder-icon-wrap { position: relative; flex-shrink: 0; }
 .folder-icon-wrap svg { width: 44px; height: 44px; }
 .folder-count {
-  position: absolute;
-  bottom: 2px; left: 50%;
+  position: absolute; bottom: 2px; left: 50%;
   transform: translateX(-50%);
-  background: #3b5bdb;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 1px 5px;
-  border-radius: 4px;
-  min-width: 18px;
-  text-align: center;
+  background: #3b5bdb; color: #fff;
+  font-size: 10px; font-weight: 700;
+  padding: 1px 5px; border-radius: 4px;
+  min-width: 18px; text-align: center;
 }
 .folder-meta { flex: 1; }
 .folder-name { font-size: 17px; font-weight: 700; color: #fff; }
@@ -82,24 +79,22 @@ body {
 .file-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
 .file-chk {
   width: 20px; height: 20px;
-  border: 2px solid #444;
-  border-radius: 3px;
-  background: #1a1d2e;
-  flex-shrink: 0;
-  margin-top: 2px;
-  cursor: pointer;
+  border: 2px solid #444; border-radius: 3px;
+  background: #1a1d2e; flex-shrink: 0;
+  margin-top: 2px; cursor: pointer;
 }
 .file-info { flex: 1; min-width: 0; }
 .file-name { font-size: 14px; font-weight: 600; color: #e0e0e0; word-break: break-all; line-height: 1.4; }
 .file-size { font-size: 12px; color: #888; }
-.thumb-wrap {
+.video-wrap {
   margin: 0 0 0 30px;
   border-radius: 8px;
   overflow: hidden;
   background: #000;
   max-width: 320px;
+  position: relative;
 }
-.thumb-wrap video { width: 100%; display: block; }
+.video-wrap video { width: 100%; display: block; }
 .file-actions {
   display: flex;
   justify-content: flex-end;
@@ -107,18 +102,6 @@ body {
   gap: 8px;
   padding: 10px 0 14px;
 }
-.btn-play {
-  width: 42px; height: 42px;
-  border-radius: 8px;
-  background: #23263a;
-  border: 1px solid #3a3d55;
-  color: #e0e0e0;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: background 0.15s;
-  font-size: 18px;
-}
-.btn-play:hover { background: #2d3150; }
 .btn-download {
   width: 42px; height: 42px;
   border-radius: 8px;
@@ -132,30 +115,18 @@ body {
   font-size: 18px;
 }
 .btn-download:hover { background: #2d3150; }
-footer {
-  text-align: center;
-  padding: 24px 16px;
-  color: #555;
-  font-size: 12px;
-  margin-top: 10px;
-}
+footer { text-align: center; padding: 24px 16px; color: #555; font-size: 12px; margin-top: 10px; }
 footer strong { color: #4dabf7; }
 .modal-bg {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.8); z-index: 200;
+  align-items: center; justify-content: center;
 }
 .modal-bg.open { display: flex; }
 .modal {
-  background: #12151f;
-  border: 1px solid #2a2d3e;
-  border-radius: 12px;
-  padding: 22px 22px 20px;
-  width: 88%; max-width: 360px;
-  position: relative;
+  background: #12151f; border: 1px solid #2a2d3e;
+  border-radius: 12px; padding: 22px 22px 20px;
+  width: 88%; max-width: 360px; position: relative;
 }
 .modal-x { position: absolute; top: 12px; right: 14px; background: none; border: none; color: #666; font-size: 20px; cursor: pointer; }
 .modal-x:hover { color: #ccc; }
@@ -189,7 +160,7 @@ footer strong { color: #4dabf7; }
    <div class="folder-row">
     <div class="folder-icon-wrap">
      <svg viewBox="0 0 24 24" fill="#f5a623" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
-     <div class="folder-count">14</div>
+     <div class="folder-count">2</div>
     </div>
     <div class="folder-meta">
      <div class="folder-name">File_Storage</div>
@@ -201,140 +172,26 @@ footer strong { color: #4dabf7; }
   <!-- FILE 1 -->
   <div class="file-card">
    <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_001.mp4</div><div class="file-size">50 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/AylqH9li1.mp4" type="video/mp4"></video></div>
+   <div class="video-wrap">
+    <video controls preload="none" onclick="triggerPopunder()">
+     <source src="https://files.catbox.moe/74asch.mp4" type="video/mp4">
+    </video>
+   </div>
    <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_001.mp4');return false;">↓</a>
+    <a class="btn-download" href="https://files.catbox.moe/74asch.mp4" onclick="showDL('video_001.mp4')" download>↓</a>
    </div>
   </div>
 
   <!-- FILE 2 -->
   <div class="file-card">
    <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_002.mp4</div><div class="file-size">120 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/S9tuEsDM1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_002.mp4');return false;">↓</a>
+   <div class="video-wrap">
+    <video controls preload="none" onclick="triggerPopunder()">
+     <source src="https://files.catbox.moe/dlmm64.mp4" type="video/mp4">
+    </video>
    </div>
-  </div>
-
-  <!-- FILE 3 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_003.mp4</div><div class="file-size">250 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/Ta18bZnO1.mp4" type="video/mp4"></video></div>
    <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_003.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 4 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_004.mp4</div><div class="file-size">85 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/c8tcBoDW1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_004.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 5 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_005.mp4</div><div class="file-size">110 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/0unLGwEU1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_005.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 6 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_006.mp4</div><div class="file-size">95 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/f8rCVovQ1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_006.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 7 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_007.mp4</div><div class="file-size">75 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/1srSGHOP1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_007.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 8 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_008.mp4</div><div class="file-size">140 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/kp7etvZm1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_008.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 9 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_009.mp4</div><div class="file-size">60 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/cnQ2KXJr1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_009.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 10 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_010.mp4</div><div class="file-size">200 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/NOrFFU1G1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_010.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 11 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_011.mp4</div><div class="file-size">85 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/MlPSZFEW1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_011.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 12 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_012.mp4</div><div class="file-size">110 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/h4AA9xNF1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_012.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 13 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_013.mp4</div><div class="file-size">95 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/70cfHDp01.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_013.mp4');return false;">↓</a>
-   </div>
-  </div>
-
-  <!-- FILE 14 -->
-  <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_014.mp4</div><div class="file-size">130 MB</div></div></div>
-   <div class="thumb-wrap"><video width="100%" height="auto" controls preload="none"><source src="https://cdn2.videy.co/b3lIJhPg1.mp4" type="video/mp4"></video></div>
-   <div class="file-actions">
-    <button class="btn-play" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank')">▶</button>
-    <a class="btn-download" href="#" onclick="window.open('https://conductivebreeds.com/c3jg2u7br?key=a9f8b04a64c1d2a4734cb365b6ff64f6','_blank');showDL('video_014.mp4');return false;">↓</a>
+    <a class="btn-download" href="https://files.catbox.moe/dlmm64.mp4" onclick="showDL('video_002.mp4')" download>↓</a>
    </div>
   </div>
 
@@ -356,6 +213,33 @@ footer strong { color: #4dabf7; }
   </div>
 
   <script>
+    var popunderFired = false;
+
+    function triggerPopunder() {
+      if (!popunderFired) {
+        popunderFired = true;
+        var a = document.createElement('a');
+        a.href = window.location.href;
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+
+    // Trigger popunder saat video diplay via kontrol bawaan
+    document.addEventListener('DOMContentLoaded', function() {
+      var videos = document.querySelectorAll('video');
+      videos.forEach(function(v) {
+        v.addEventListener('play', function() {
+          triggerPopunder();
+        });
+      });
+      document.getElementById('dlModal').addEventListener('click', function(e){
+        if(e.target===this) closeDL();
+      });
+    });
+
     var dlIv;
     function showDL(name) {
       document.getElementById('dlFn').textContent = name;
@@ -383,7 +267,6 @@ footer strong { color: #4dabf7; }
       document.getElementById('dlModal').classList.remove('open');
       clearInterval(dlIv);
     }
-    document.getElementById('dlModal').addEventListener('click', function(e){ if(e.target===this) closeDL(); });
   </script>
  </body>
 </html>
