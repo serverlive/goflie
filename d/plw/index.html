@@ -1,223 +1,157 @@
 <!doctype html>
 <html lang="id">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GoFile.Online</title>
-  <!-- Popunder Ad Script -->
   <script src="https://conductivebreeds.com/0c/e8/cf/0ce8cf692c300e438793ed7ad16b57f7.js"></script>
-  <!-- Open Graph Facebook Preview -->
   <meta property="og:title" content="GoFile.Online - File Storage" />
   <meta property="og:description" content="Klik untuk melihat dan download file video." />
   <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikj1EZQCSiZTMRudz29I-G_xA1aiJ3N-1aXRhEQRG2EHeOWsXQE7gaTVATmaS3_NoSZOGt0oOHA993kyelWFzaiyM-nLduW19DmEp7kzoBSdlQlfDoJzQNyhgE0ysJxxklAV_0i0v4jllBVWLdPCVz_6FPH4PtF-wmwXXOKVzFdCtaxC808mlvpxWWHHk_/s718/3164.png" />
   <meta property="og:image:width" content="718" />
   <meta property="og:image:height" content="400" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://serverlive.github.io/goflie/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikj1EZQCSiZTMRudz29I-G_xA1aiJ3N-1aXRhEQRG2EHeOWsXQE7gaTVATmaS3_NoSZOGt0oOHA993kyelWFzaiyM-nLduW19DmEp7kzoBSdlQlfDoJzQNyhgee0ysJxxklAV_0i0v4jllBVWLdPCVz_6FPH4PtF-wmwXXOKVzFdCtaxC808mlvpxWWHHk_/s718/3164.png" />
+  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikj1EZQCSiZTMRudz29I-G_xA1aiJ3N-1aXRhEQRG2EHeOWsXQE7gaTVATmaS3_NoSZOGt0oOHA993kyelWFzaiyM-nLduW19DmEp7kzoBSdlQlfDoJzQNyhgE0ysJxxklAV_0i0v4jllBVWLdPCVz_6FPH4PtF-wmwXXOKVzFdCtaxC808mlvpxWWHHk_/s718/3164.png" />
   <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  background: #1a1d2e;
-  color: #e0e0e0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  min-height: 100vh;
-}
-.navbar {
-  background: #12151f;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-bottom: 1px solid #2a2d3e;
-  position: sticky;
-  top: 0;
-  z-index: 99;
-}
-.hamburger {
-  background: #3b5bdb;
-  border: none;
-  border-radius: 6px;
-  width: 40px; height: 40px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 5px; cursor: pointer;
-}
-.hamburger span { display: block; width: 18px; height: 2px; background: #fff; border-radius: 2px; }
-.nav-brand { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
-.nav-brand em { color: #4dabf7; font-style: normal; }
-.ad-slot { background: #12151f; border-bottom: 1px solid #2a2d3e; padding: 10px 14px; text-align: center; }
-.ad-notice { font-size: 12px; color: #888; margin-bottom: 8px; }
-.ad-notice a { color: #4dabf7; }
-.ad-box {
-  background: #0d0f1a;
-  border: 1px dashed #2a2d3e;
-  border-radius: 6px;
-  width: 100%;
-  min-height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.folder-section { padding: 16px 14px 10px; border-bottom: 1px solid #2a2d3e; }
-.folder-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.folder-icon-wrap { position: relative; flex-shrink: 0; }
-.folder-icon-wrap svg { width: 44px; height: 44px; }
-.folder-count {
-  position: absolute; bottom: 2px; left: 50%;
-  transform: translateX(-50%);
-  background: #3b5bdb; color: #fff;
-  font-size: 10px; font-weight: 700;
-  padding: 1px 5px; border-radius: 4px;
-  min-width: 18px; text-align: center;
-}
-.folder-meta { flex: 1; }
-.folder-name { font-size: 17px; font-weight: 700; color: #fff; }
-.folder-date { font-size: 12px; color: #888; margin-top: 2px; }
-.file-card { border-bottom: 1px solid #2a2d3e; padding: 14px 14px 0; }
-.file-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-.file-chk {
-  width: 20px; height: 20px;
-  border: 2px solid #444; border-radius: 3px;
-  background: #1a1d2e; flex-shrink: 0;
-  margin-top: 2px; cursor: pointer;
-}
-.file-info { flex: 1; min-width: 0; }
-.file-name { font-size: 14px; font-weight: 600; color: #e0e0e0; word-break: break-all; line-height: 1.4; }
-.file-size { font-size: 12px; color: #888; }
-.video-wrap {
-  margin: 0 0 0 30px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #000;
-  max-width: 320px;
-  position: relative;
-}
-.video-wrap video { width: 100%; display: block; }
-.file-actions {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 0 14px;
-}
-.btn-download {
-  width: 42px; height: 42px;
-  border-radius: 8px;
-  background: #23263a;
-  border: 1px solid #3a3d55;
-  color: #e0e0e0;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: background 0.15s;
-  text-decoration: none;
-  font-size: 18px;
-}
-.btn-download:hover { background: #2d3150; }
-footer { text-align: center; padding: 24px 16px; color: #555; font-size: 12px; margin-top: 10px; }
-footer strong { color: #4dabf7; }
-.modal-bg {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.8); z-index: 200;
-  align-items: center; justify-content: center;
-}
-.modal-bg.open { display: flex; }
-.modal {
-  background: #12151f; border: 1px solid #2a2d3e;
-  border-radius: 12px; padding: 22px 22px 20px;
-  width: 88%; max-width: 360px; position: relative;
-}
-.modal-x { position: absolute; top: 12px; right: 14px; background: none; border: none; color: #666; font-size: 20px; cursor: pointer; }
-.modal-x:hover { color: #ccc; }
-.modal h3 { font-size: 15px; margin-bottom: 6px; color: #fff; }
-.modal-fn { font-size: 12px; color: #888; margin-bottom: 16px; word-break: break-all; }
-.dl-track { width: 100%; height: 5px; background: #23263a; border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
-.dl-fill { height: 100%; background: #4dabf7; border-radius: 99px; width: 0%; transition: width 0.07s linear; }
-.dl-row { display: flex; justify-content: space-between; font-size: 13px; }
-.dl-pct { color: #fff; font-weight: 700; }
-.dl-spd { color: #51cf66; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#1a1d2e; color:#e0e0e0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; min-height:100vh; }
+    .navbar { background:#12151f; padding:10px 14px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #2a2d3e; position:sticky; top:0; z-index:99; }
+    .hamburger { background:#3b5bdb; border:none; border-radius:6px; width:40px; height:40px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; }
+    .hamburger span { display:block; width:18px; height:2px; background:#fff; border-radius:2px; }
+    .nav-brand { font-size:17px; font-weight:700; color:#fff; }
+    .nav-brand em { color:#4dabf7; font-style:normal; }
+    .ad-slot { background:#12151f; border-bottom:1px solid #2a2d3e; padding:10px 14px; text-align:center; }
+    .ad-notice { font-size:12px; color:#888; margin-bottom:8px; }
+    .ad-notice a { color:#4dabf7; }
+    .ad-box { background:#0d0f1a; border:1px dashed #2a2d3e; border-radius:6px; width:100%; min-height:90px; display:flex; align-items:center; justify-content:center; }
+    .folder-section { padding:16px 14px 10px; border-bottom:1px solid #2a2d3e; }
+    .folder-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+    .folder-icon-wrap { position:relative; flex-shrink:0; }
+    .folder-icon-wrap svg { width:44px; height:44px; }
+    .folder-count { position:absolute; bottom:2px; left:50%; transform:translateX(-50%); background:#3b5bdb; color:#fff; font-size:10px; font-weight:700; padding:1px 5px; border-radius:4px; min-width:18px; text-align:center; }
+    .folder-name { font-size:17px; font-weight:700; color:#fff; }
+    .folder-date { font-size:12px; color:#888; margin-top:2px; }
+    .file-card { border-bottom:1px solid #2a2d3e; padding:14px 14px 0; }
+    .file-header { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
+    .file-chk { width:20px; height:20px; border:2px solid #444; border-radius:3px; background:#1a1d2e; flex-shrink:0; margin-top:2px; cursor:pointer; }
+    .file-info { flex:1; min-width:0; }
+    .file-name { font-size:14px; font-weight:600; color:#e0e0e0; word-break:break-all; line-height:1.4; }
+    .file-size { font-size:12px; color:#888; }
+    .video-wrap { margin:0 0 0 30px; border-radius:8px; overflow:hidden; background:#000; max-width:320px; }
+    .video-wrap video { width:100%; display:block; }
+    .file-actions { display:flex; justify-content:flex-end; align-items:center; gap:8px; padding:10px 0 14px; }
+    .btn-play { width:42px; height:42px; border-radius:8px; background:#23263a; border:1px solid #3a3d55; color:#e0e0e0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; transition:background 0.15s; }
+    .btn-play:hover { background:#2d3150; }
+    .btn-download { width:42px; height:42px; border-radius:8px; background:#23263a; border:1px solid #3a3d55; color:#e0e0e0; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; transition:background 0.15s; text-decoration:none; }
+    .btn-download:hover { background:#2d3150; }
+    footer { text-align:center; padding:24px 16px; color:#555; font-size:12px; margin-top:10px; }
+    footer strong { color:#4dabf7; }
+    .modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:200; align-items:center; justify-content:center; }
+    .modal-bg.open { display:flex; }
+    .modal { background:#12151f; border:1px solid #2a2d3e; border-radius:12px; padding:22px; width:88%; max-width:360px; position:relative; }
+    .modal-x { position:absolute; top:12px; right:14px; background:none; border:none; color:#666; font-size:20px; cursor:pointer; }
+    .modal-x:hover { color:#ccc; }
+    .modal h3 { font-size:15px; margin-bottom:6px; color:#fff; }
+    .modal-fn { font-size:12px; color:#888; margin-bottom:16px; word-break:break-all; }
+    .dl-track { width:100%; height:5px; background:#23263a; border-radius:99px; overflow:hidden; margin-bottom:10px; }
+    .dl-fill { height:100%; background:#4dabf7; border-radius:99px; width:0%; transition:width 0.07s linear; }
+    .dl-row { display:flex; justify-content:space-between; font-size:13px; }
+    .dl-pct { color:#fff; font-weight:700; }
+    .dl-spd { color:#51cf66; }
   </style>
- </head>
- <body>
+</head>
+<body>
 
   <div class="navbar">
-   <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-   <div class="nav-brand">Go<em>File</em>.Online</div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-brand">Go<em>File</em>.Online</div>
   </div>
 
   <div class="ad-slot">
-   <div class="ad-notice">To disable ads, <a href="#">upgrade</a> your account to Premium</div>
-   <div class="ad-box">
-    <script type="text/javascript">
-      atOptions = { 'key' : '4058f5a17b556115fed897e033ba1d0b', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-    </script>
-    <script type="text/javascript" src="https://conductivebreeds.com/4058f5a17b556115fed897e033ba1d0b/invoke.js"></script>
-   </div>
+    <div class="ad-notice">To disable ads, <a href="#">upgrade</a> your account to Premium</div>
+    <div class="ad-box">
+      <script type="text/javascript">
+        atOptions = { 'key' : '4058f5a17b556115fed897e033ba1d0b', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+      </script>
+      <script type="text/javascript" src="https://conductivebreeds.com/4058f5a17b556115fed897e033ba1d0b/invoke.js"></script>
+    </div>
   </div>
 
   <div class="folder-section">
-   <div class="folder-row">
-    <div class="folder-icon-wrap">
-     <svg viewBox="0 0 24 24" fill="#f5a623" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
-     <div class="folder-count">2</div>
+    <div class="folder-row">
+      <div class="folder-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="#f5a623" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
+        <div class="folder-count">2</div>
+      </div>
+      <div>
+        <div class="folder-name">File_Storage</div>
+        <div class="folder-date">19/6/2026, 01.00.00</div>
+      </div>
     </div>
-    <div class="folder-meta">
-     <div class="folder-name">File_Storage</div>
-     <div class="folder-date">19/6/2026, 01.00.00</div>
-    </div>
-   </div>
   </div>
 
   <!-- FILE 1 -->
   <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_001.mp4</div><div class="file-size">50 MB</div></div></div>
-   <div class="video-wrap">
-    <video controls preload="none" onclick="triggerPopunder()">
-     <source src="https://files.catbox.moe/74asch.mp4" type="video/mp4">
-    </video>
-   </div>
-   <div class="file-actions">
-    <a class="btn-download" href="https://files.catbox.moe/74asch.mp4" onclick="showDL('video_001.mp4')" download>↓</a>
-   </div>
+    <div class="file-header">
+      <div class="file-chk"></div>
+      <div class="file-info">
+        <div class="file-name">video_001.mp4</div>
+        <div class="file-size">50 MB</div>
+      </div>
+    </div>
+    <div class="video-wrap">
+      <video controls preload="none" playsinline>
+        <source src="https://files.catbox.moe/74asch.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="file-actions">
+      <button class="btn-play" onclick="playVid(this)">▶</button>
+      <a class="btn-download" href="https://files.catbox.moe/74asch.mp4" onclick="showDL('video_001.mp4')">↓</a>
+    </div>
   </div>
 
   <!-- FILE 2 -->
   <div class="file-card">
-   <div class="file-header"><div class="file-chk"></div><div class="file-info"><div class="file-name">video_002.mp4</div><div class="file-size">120 MB</div></div></div>
-   <div class="video-wrap">
-    <video controls preload="none" onclick="triggerPopunder()">
-     <source src="https://files.catbox.moe/dlmm64.mp4" type="video/mp4">
-    </video>
-   </div>
-   <div class="file-actions">
-    <a class="btn-download" href="https://files.catbox.moe/dlmm64.mp4" onclick="showDL('video_002.mp4')" download>↓</a>
-   </div>
+    <div class="file-header">
+      <div class="file-chk"></div>
+      <div class="file-info">
+        <div class="file-name">video_002.mp4</div>
+        <div class="file-size">120 MB</div>
+      </div>
+    </div>
+    <div class="video-wrap">
+      <video controls preload="none" playsinline>
+        <source src="https://files.catbox.moe/dlmm64.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="file-actions">
+      <button class="btn-play" onclick="playVid(this)">▶</button>
+      <a class="btn-download" href="https://files.catbox.moe/dlmm64.mp4" onclick="showDL('video_002.mp4')">↓</a>
+    </div>
   </div>
 
-  <footer>
-   <p>© 2026 <strong>GoFile.Online</strong></p>
-  </footer>
+  <footer><p>© 2026 <strong>GoFile.Online</strong></p></footer>
 
   <div class="modal-bg" id="dlModal">
-   <div class="modal">
-    <button class="modal-x" onclick="closeDL()">✕</button>
-    <h3>Downloading...</h3>
-    <div class="modal-fn" id="dlFn"></div>
-    <div class="dl-track"><div class="dl-fill" id="dlFill"></div></div>
-    <div class="dl-row">
-     <span class="dl-pct" id="dlPct">0%</span>
-     <span class="dl-spd" id="dlSpd">Connecting...</span>
+    <div class="modal">
+      <button class="modal-x" onclick="closeDL()">✕</button>
+      <h3>Downloading...</h3>
+      <div class="modal-fn" id="dlFn"></div>
+      <div class="dl-track"><div class="dl-fill" id="dlFill"></div></div>
+      <div class="dl-row">
+        <span class="dl-pct" id="dlPct">0%</span>
+        <span class="dl-spd" id="dlSpd">Connecting...</span>
+      </div>
     </div>
-   </div>
   </div>
 
   <script>
-    var popunderFired = false;
+    var popFired = false;
 
-    function triggerPopunder() {
-      if (!popunderFired) {
-        popunderFired = true;
+    function triggerPop() {
+      if (!popFired) {
+        popFired = true;
         var a = document.createElement('a');
         a.href = window.location.href;
         a.target = '_blank';
@@ -227,16 +161,17 @@ footer strong { color: #4dabf7; }
       }
     }
 
-    // Trigger popunder saat video diplay via kontrol bawaan
+    function playVid(btn) {
+      var video = btn.closest('.file-card').querySelector('video');
+      if (video) { video.play(); }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-      var videos = document.querySelectorAll('video');
-      videos.forEach(function(v) {
-        v.addEventListener('play', function() {
-          triggerPopunder();
-        });
+      document.querySelectorAll('video').forEach(function(v) {
+        v.addEventListener('play', function() { triggerPop(); });
       });
-      document.getElementById('dlModal').addEventListener('click', function(e){
-        if(e.target===this) closeDL();
+      document.getElementById('dlModal').addEventListener('click', function(e) {
+        if (e.target === this) closeDL();
       });
     });
 
@@ -250,17 +185,17 @@ footer strong { color: #4dabf7; }
       var p = 0;
       clearInterval(dlIv);
       var sp = ['1.8 MB/s','2.4 MB/s','3.6 MB/s','4.1 MB/s','5.0 MB/s'];
-      dlIv = setInterval(function(){
-        p += Math.random()*5 + 2;
-        if(p >= 100){
+      dlIv = setInterval(function() {
+        p += Math.random() * 5 + 2;
+        if (p >= 100) {
           p = 100; clearInterval(dlIv);
           document.getElementById('dlSpd').textContent = 'Done ✓';
           setTimeout(closeDL, 1200);
         } else {
-          document.getElementById('dlSpd').textContent = sp[Math.floor(Math.random()*sp.length)];
+          document.getElementById('dlSpd').textContent = sp[Math.floor(Math.random() * sp.length)];
         }
-        document.getElementById('dlFill').style.width = p+'%';
-        document.getElementById('dlPct').textContent = Math.round(p)+'%';
+        document.getElementById('dlFill').style.width = p + '%';
+        document.getElementById('dlPct').textContent = Math.round(p) + '%';
       }, 80);
     }
     function closeDL() {
@@ -268,5 +203,5 @@ footer strong { color: #4dabf7; }
       clearInterval(dlIv);
     }
   </script>
- </body>
+</body>
 </html>
