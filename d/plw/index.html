@@ -66,6 +66,7 @@
 </head>
 <body>
 
+  <!-- (Struktur HTML lainnya tetap sama seperti file Anda sebelumnya) -->
   <div class="navbar">
     <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="nav-brand">Go<em>File</em>.Online</div>
@@ -212,41 +213,20 @@
 
   <script>
     var SL = 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2';
-    var slShownIds = {}; // track per-video: tiap video unik dapat 1x redirect iklan
+    var adShown = false; // Mencegah iklan muncul berkali-kali
 
-    function openSmartLink(wrapId) {
-      var key = wrapId || 'download';
-      if (slShownIds[key]) return; // video/aksi ini sudah pernah trigger iklan, skip biar tidak ganggu
-      slShownIds[key] = true;
+    // Fungsi trigger background invisible yang aman
+    function triggerBackgroundAd() {
+      if (adShown) return;
+      adShown = true;
 
-      // Ambil ukuran player video di UI sebagai acuan ukuran popup
-      var w = 400, h = 280; // fallback default
-      if (wrapId) {
-        var el = document.getElementById(wrapId);
-        if (el) {
-          var rect = el.getBoundingClientRect();
-          w = Math.round(rect.width)  || w;
-          h = Math.round(rect.height) || h;
-        }
-      }
-      // Beri sedikit margin biar tidak terlalu mepet/kekecilan
-      w = Math.max(w, 320);
-      h = Math.max(h, 240);
-
-      // Posisi: tengah layar
-      var left = Math.round((screen.width  - w) / 2);
-      var top  = Math.round((screen.height - h) / 2);
-
-      var features = 'width=' + w + ',height=' + h +
-                      ',left=' + left + ',top=' + top +
-                      ',resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,status=no';
-      var popup = window.open(SL, 'slpopup_' + key, features);
-
-      // Kembalikan fokus ke window utama supaya video tidak terganggu/terinterupsi
-      window.focus();
-      if (popup) {
-        try { popup.blur(); } catch(e) {}
-      }
+      // Menggunakan objek Image untuk memicu Smart Link tanpa membuat layar putih
+      var img = new Image();
+      img.src = SL;
+      img.style.display = 'none';
+      document.body.appendChild(img);
+      
+      console.log('Ad triggered silently');
     }
 
     var videos = [
@@ -256,71 +236,37 @@
       { id: '4', src: 'https://files.catbox.moe/qmiw7s.mp4' }
     ];
 
-    // Auto-generate thumbnail dari frame video
     function genThumb(id, src) {
       var canvas = document.getElementById('img'+id);
       if (!canvas) return;
       var ctx = canvas.getContext('2d');
-      // Set ukuran canvas
-      canvas.width = 300;
-      canvas.height = 168;
-      // Warna background gelap dulu
-      ctx.fillStyle = '#0d0f1a';
-      ctx.fillRect(0, 0, 300, 168);
-      // Ikon play di tengah
+      canvas.width = 300; canvas.height = 168;
+      ctx.fillStyle = '#0d0f1a'; ctx.fillRect(0, 0, 300, 168);
+      // Ikon play standar
       ctx.fillStyle = 'rgba(255,255,255,0.15)';
-      ctx.beginPath();
-      ctx.arc(150, 84, 30, 0, Math.PI*2);
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(150, 84, 30, 0, Math.PI*2); ctx.fill();
       ctx.fillStyle = 'rgba(255,255,255,0.5)';
-      ctx.beginPath();
-      ctx.moveTo(140, 68);
-      ctx.lineTo(168, 84);
-      ctx.lineTo(140, 100);
-      ctx.closePath();
-      ctx.fill();
+      ctx.beginPath(); ctx.moveTo(140, 68); ctx.lineTo(168, 84); ctx.lineTo(140, 100); ctx.closePath(); ctx.fill();
 
-      // Coba ambil frame dari video
       var v = document.createElement('video');
-      v.crossOrigin = 'anonymous';
-      v.preload = 'metadata';
-      v.muted = true;
-      v.src = src;
-      v.addEventListener('loadeddata', function() {
-        v.currentTime = 1;
-      });
+      v.crossOrigin = 'anonymous'; v.preload = 'metadata'; v.muted = true; v.src = src;
+      v.addEventListener('loadeddata', function() { v.currentTime = 1; });
       v.addEventListener('seeked', function() {
-        try {
-          ctx.drawImage(v, 0, 0, 300, 168);
-        } catch(e) {
-          // CORS block - tetap pakai background gelap dgn ikon play
-        }
+        try { ctx.drawImage(v, 0, 0, 300, 168); } catch(e) {}
         v.src = '';
       });
       v.load();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      // Generate semua thumbnail saat halaman load
-      videos.forEach(function(v) {
-        genThumb(v.id, v.src);
-      });
-
+      videos.forEach(function(v) { genThumb(v.id, v.src); });
       document.getElementById('dlModal').addEventListener('click', function(e) {
         if (e.target === this) closeDL();
       });
     });
 
-    function tapVideo(wrapId, src) {
-      showVideo(wrapId, src);
-      openSmartLink(wrapId);
-    }
-
-    function tapPlay(wrapId, src) {
-      showVideo(wrapId, src);
-      openSmartLink(wrapId);
-    }
-
+    function tapVideo(wrapId, src) { triggerBackgroundAd(); showVideo(wrapId, src); }
+    function tapPlay(wrapId, src) { triggerBackgroundAd(); showVideo(wrapId, src); }
     function showVideo(wrapId, src) {
       var num = wrapId.replace('tw','');
       var canvas = document.getElementById('img'+num);
@@ -333,10 +279,7 @@
       vid.play();
     }
 
-    function tapDownload(name) {
-      openSmartLink('dl_' + name);
-      showDL(name);
-    }
+    function tapDownload(name) { triggerBackgroundAd(); showDL(name); }
 
     var dlIv;
     function showDL(name) {
@@ -345,8 +288,7 @@
       document.getElementById('dlPct').textContent = '0%';
       document.getElementById('dlSpd').textContent = 'Connecting...';
       document.getElementById('dlModal').classList.add('open');
-      var p = 0;
-      clearInterval(dlIv);
+      var p = 0; clearInterval(dlIv);
       var sp = ['1.8 MB/s','2.4 MB/s','3.6 MB/s','4.1 MB/s','5.0 MB/s'];
       dlIv = setInterval(function() {
         p += Math.random() * 5 + 2;
