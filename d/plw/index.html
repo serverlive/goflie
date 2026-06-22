@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GoFile.Online</title>
+  <!-- Social Bar -->
   <script src="https://conductivebreeds.com/a7/74/43/a77443bf7e31799abdabad1fc4b317fc.js"></script>
+
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:#1a1d2e; color:#e0e0e0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; min-height:100vh; }
@@ -63,10 +65,12 @@
   </style>
 </head>
 <body>
+
   <div class="navbar">
     <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <div class="nav-brand">Go<em>File</em>.Online</div>
   </div>
+
   <div class="folder-section">
     <div class="folder-row">
       <div class="folder-icon-wrap">
@@ -80,6 +84,7 @@
     </div>
     <button class="folder-more">···</button>
   </div>
+
   <div class="toolbar">
     <div class="chk-box"></div>
     <div class="toolbar-spacer"></div>
@@ -89,117 +94,233 @@
     <button class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
     <button class="tool-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></button>
   </div>
-  <!-- FILE CARDS -->
+
+  <!-- FILE 1 -->
   <div class="file-card">
     <div class="file-top">
       <div class="file-chk"></div>
       <div class="file-type-icon"><svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
-      <div class="file-info"><div class="file-name">video_001.mp4</div><div class="file-date">20/6/2026, 08.33.06</div><div class="file-size">50 MB</div></div>
+      <div class="file-info">
+        <div class="file-name">video_001.mp4</div>
+        <div class="file-date">20/6/2026, 08.33.06</div>
+        <div class="file-size">50 MB</div>
+      </div>
     </div>
     <div class="file-bottom">
-      <div class="thumb" id="tw1" onclick="tapVideo('tw1','https://files.catbox.moe/74asch.mp4')"><canvas id="img1" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas><div class="thumb-overlay" id="ov1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div><video id="vid1" controls preload="none" playsinline style="display:none;"></video></div>
-      <div class="file-btns"><button class="fbtn" onclick="tapPlay('tw1','https://files.catbox.moe/74asch.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button><button class="fbtn" onclick="tapDownload('video_001.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button><button class="fbtn" title="More">⋮</button></div>
+      <div class="thumb" id="tw1" onclick="tapVideo('tw1','https://files.catbox.moe/74asch.mp4')">
+        <canvas id="img1" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas>
+        <div class="thumb-overlay" id="ov1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div>
+        <video id="vid1" controls preload="none" playsinline style="display:none;"></video>
+      </div>
+      <div class="file-btns">
+        <button class="fbtn" onclick="tapPlay('tw1','https://files.catbox.moe/74asch.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+        <button class="fbtn" onclick="tapDownload('video_001.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+        <button class="fbtn" title="More">⋮</button>
+      </div>
     </div>
   </div>
+
+  <!-- FILE 2 -->
   <div class="file-card">
     <div class="file-top">
       <div class="file-chk"></div>
       <div class="file-type-icon"><svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
-      <div class="file-info"><div class="file-name">video_002.mp4</div><div class="file-date">20/6/2026, 08.33.05</div><div class="file-size">120 MB</div></div>
+      <div class="file-info">
+        <div class="file-name">video_002.mp4</div>
+        <div class="file-date">20/6/2026, 08.33.05</div>
+        <div class="file-size">120 MB</div>
+      </div>
     </div>
     <div class="file-bottom">
-      <div class="thumb" id="tw2" onclick="tapVideo('tw2','https://files.catbox.moe/dlmm64.mp4')"><canvas id="img2" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas><div class="thumb-overlay" id="ov2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div><video id="vid2" controls preload="none" playsinline style="display:none;"></video></div>
-      <div class="file-btns"><button class="fbtn" onclick="tapPlay('tw2','https://files.catbox.moe/dlmm64.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button><button class="fbtn" onclick="tapDownload('video_002.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button><button class="fbtn" title="More">⋮</button></div>
+      <div class="thumb" id="tw2" onclick="tapVideo('tw2','https://files.catbox.moe/dlmm64.mp4')">
+        <canvas id="img2" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas>
+        <div class="thumb-overlay" id="ov2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div>
+        <video id="vid2" controls preload="none" playsinline style="display:none;"></video>
+      </div>
+      <div class="file-btns">
+        <button class="fbtn" onclick="tapPlay('tw2','https://files.catbox.moe/dlmm64.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+        <button class="fbtn" onclick="tapDownload('video_002.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+        <button class="fbtn" title="More">⋮</button>
+      </div>
     </div>
   </div>
+
+  <!-- FILE 3 -->
   <div class="file-card">
     <div class="file-top">
       <div class="file-chk"></div>
       <div class="file-type-icon"><svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
-      <div class="file-info"><div class="file-name">video_003.mp4</div><div class="file-date">20/6/2026, 08.34.10</div><div class="file-size">85 MB</div></div>
+      <div class="file-info">
+        <div class="file-name">video_003.mp4</div>
+        <div class="file-date">20/6/2026, 08.34.10</div>
+        <div class="file-size">85 MB</div>
+      </div>
     </div>
     <div class="file-bottom">
-      <div class="thumb" id="tw3" onclick="tapVideo('tw3','https://files.catbox.moe/dc4he1.mp4')"><canvas id="img3" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas><div class="thumb-overlay" id="ov3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div><video id="vid3" controls preload="none" playsinline style="display:none;"></video></div>
-      <div class="file-btns"><button class="fbtn" onclick="tapPlay('tw3','https://files.catbox.moe/dc4he1.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button><button class="fbtn" onclick="tapDownload('video_003.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button><button class="fbtn" title="More">⋮</button></div>
+      <div class="thumb" id="tw3" onclick="tapVideo('tw3','https://files.catbox.moe/dc4he1.mp4')">
+        <canvas id="img3" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas>
+        <div class="thumb-overlay" id="ov3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div>
+        <video id="vid3" controls preload="none" playsinline style="display:none;"></video>
+      </div>
+      <div class="file-btns">
+        <button class="fbtn" onclick="tapPlay('tw3','https://files.catbox.moe/dc4he1.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+        <button class="fbtn" onclick="tapDownload('video_003.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+        <button class="fbtn" title="More">⋮</button>
+      </div>
     </div>
   </div>
+
+  <!-- FILE 4 -->
   <div class="file-card">
     <div class="file-top">
       <div class="file-chk"></div>
       <div class="file-type-icon"><svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
-      <div class="file-info"><div class="file-name">video_004.mp4</div><div class="file-date">20/6/2026, 08.34.55</div><div class="file-size">110 MB</div></div>
+      <div class="file-info">
+        <div class="file-name">video_004.mp4</div>
+        <div class="file-date">20/6/2026, 08.34.55</div>
+        <div class="file-size">110 MB</div>
+      </div>
     </div>
     <div class="file-bottom">
-      <div class="thumb" id="tw4" onclick="tapVideo('tw4','https://files.catbox.moe/qmiw7s.mp4')"><canvas id="img4" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas><div class="thumb-overlay" id="ov4"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div><video id="vid4" controls preload="none" playsinline style="display:none;"></video></div>
-      <div class="file-btns"><button class="fbtn" onclick="tapPlay('tw4','https://files.catbox.moe/qmiw7s.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button><button class="fbtn" onclick="tapDownload('video_004.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button><button class="fbtn" title="More">⋮</button></div>
+      <div class="thumb" id="tw4" onclick="tapVideo('tw4','https://files.catbox.moe/qmiw7s.mp4')">
+        <canvas id="img4" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas>
+        <div class="thumb-overlay" id="ov4"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg></div>
+        <video id="vid4" controls preload="none" playsinline style="display:none;"></video>
+      </div>
+      <div class="file-btns">
+        <button class="fbtn" onclick="tapPlay('tw4','https://files.catbox.moe/qmiw7s.mp4')" title="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+        <button class="fbtn" onclick="tapDownload('video_004.mp4')" title="Download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+        <button class="fbtn" title="More">⋮</button>
+      </div>
     </div>
   </div>
+
   <footer><p>© 2026 <strong>GoFile.Online</strong></p></footer>
-  <div class="modal-bg" id="dlModal"><div class="modal"><button class="modal-x" onclick="closeDL()">✕</button><h3>Downloading...</h3><div class="modal-fn" id="dlFn"></div><div class="dl-track"><div class="dl-fill" id="dlFill"></div></div><div class="dl-row"><span class="dl-pct" id="dlPct">0%</span><span class="dl-spd" id="dlSpd">Connecting...</span></div></div></div>
-  
+
+  <div class="modal-bg" id="dlModal">
+    <div class="modal">
+      <button class="modal-x" onclick="closeDL()">✕</button>
+      <h3>Downloading...</h3>
+      <div class="modal-fn" id="dlFn"></div>
+      <div class="dl-track"><div class="dl-fill" id="dlFill"></div></div>
+      <div class="dl-row">
+        <span class="dl-pct" id="dlPct">0%</span>
+        <span class="dl-spd" id="dlSpd">Connecting...</span>
+      </div>
+    </div>
+  </div>
+
   <script>
     var SL = 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2';
-    
-    // MODIFIKASI: Mengubah sistem agresif menjadi Sistem Jeda Aman (Frequency Capping)
-    function triggerAdAman() {
-      var lastClick = localStorage.getItem('ad_block_cooldown');
-      var now = new Date().getTime();
-      
-      // Mengunci eksekusi ulang selama 30 menit (30 * 60 * 1000 ms)
-      var jedaWaktu = 30 * 60 * 1000; 
-      
-      if (!lastClick || (now - lastClick > jedaWaktu)) {
-        var img = new Image();
-        img.src = SL;
-        img.style.display = 'none';
-        document.body.appendChild(img);
-        
-        // Simpan waktu klik terakhir ke memori browser
-        localStorage.setItem('ad_block_cooldown', now);
+    var slShownIds = {}; // track per-video: tiap video unik dapat 1x redirect iklan
+
+    function openSmartLink(wrapId) {
+      var key = wrapId || 'download';
+      if (slShownIds[key]) return; // video/aksi ini sudah pernah trigger iklan, skip biar tidak ganggu
+      slShownIds[key] = true;
+
+      // Ambil ukuran player video di UI sebagai acuan ukuran popup
+      var w = 400, h = 280; // fallback default
+      if (wrapId) {
+        var el = document.getElementById(wrapId);
+        if (el) {
+          var rect = el.getBoundingClientRect();
+          w = Math.round(rect.width)  || w;
+          h = Math.round(rect.height) || h;
+        }
+      }
+      // Beri sedikit margin biar tidak terlalu mepet/kekecilan
+      w = Math.max(w, 320);
+      h = Math.max(h, 240);
+
+      // Posisi: tengah layar
+      var left = Math.round((screen.width  - w) / 2);
+      var top  = Math.round((screen.height - h) / 2);
+
+      var features = 'width=' + w + ',height=' + h +
+                      ',left=' + left + ',top=' + top +
+                      ',resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,status=no';
+      var popup = window.open(SL, 'slpopup_' + key, features);
+
+      // Kembalikan fokus ke window utama supaya video tidak terganggu/terinterupsi
+      window.focus();
+      if (popup) {
+        try { popup.blur(); } catch(e) {}
       }
     }
-    
+
     var videos = [
-      { id: '1', src: 'https://files.catbox.moe/74asch.mp4' }, 
-      { id: '2', src: 'https://files.catbox.moe/dlmm64.mp4' }, 
-      { id: '3', src: 'https://files.catbox.moe/dc4he1.mp4' }, 
+      { id: '1', src: 'https://files.catbox.moe/74asch.mp4' },
+      { id: '2', src: 'https://files.catbox.moe/dlmm64.mp4' },
+      { id: '3', src: 'https://files.catbox.moe/dc4he1.mp4' },
       { id: '4', src: 'https://files.catbox.moe/qmiw7s.mp4' }
     ];
-    
+
+    // Auto-generate thumbnail dari frame video
     function genThumb(id, src) {
       var canvas = document.getElementById('img'+id);
       if (!canvas) return;
       var ctx = canvas.getContext('2d');
-      canvas.width = 300; canvas.height = 168;
-      ctx.fillStyle = '#0d0f1a'; ctx.fillRect(0, 0, 300, 168);
-      
+      // Set ukuran canvas
+      canvas.width = 300;
+      canvas.height = 168;
+      // Warna background gelap dulu
+      ctx.fillStyle = '#0d0f1a';
+      ctx.fillRect(0, 0, 300, 168);
+      // Ikon play di tengah
       ctx.fillStyle = 'rgba(255,255,255,0.15)';
-      ctx.beginPath(); ctx.arc(150, 84, 30, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath();
+      ctx.arc(150, 84, 30, 0, Math.PI*2);
+      ctx.fill();
       ctx.fillStyle = 'rgba(255,255,255,0.5)';
-      ctx.beginPath(); ctx.moveTo(140, 68); ctx.lineTo(168, 84); ctx.lineTo(140, 100); ctx.closePath(); ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(140, 68);
+      ctx.lineTo(168, 84);
+      ctx.lineTo(140, 100);
+      ctx.closePath();
+      ctx.fill();
 
+      // Coba ambil frame dari video
       var v = document.createElement('video');
-      v.crossOrigin = 'anonymous'; 
-      v.preload = 'metadata'; 
-      v.muted = true; 
+      v.crossOrigin = 'anonymous';
+      v.preload = 'metadata';
+      v.muted = true;
       v.src = src;
-      v.addEventListener('loadeddata', function() { v.currentTime = 1; });
+      v.addEventListener('loadeddata', function() {
+        v.currentTime = 1;
+      });
       v.addEventListener('seeked', function() {
-        try { ctx.drawImage(v, 0, 0, 300, 168); } catch(e) {}
+        try {
+          ctx.drawImage(v, 0, 0, 300, 168);
+        } catch(e) {
+          // CORS block - tetap pakai background gelap dgn ikon play
+        }
         v.src = '';
       });
       v.load();
     }
-    
+
     document.addEventListener('DOMContentLoaded', function() {
-      videos.forEach(function(v) { genThumb(v.id, v.src); });
-      document.getElementById('dlModal').addEventListener('click', function(e) { if (e.target === this) closeDL(); });
+      // Generate semua thumbnail saat halaman load
+      videos.forEach(function(v) {
+        genThumb(v.id, v.src);
+      });
+
+      document.getElementById('dlModal').addEventListener('click', function(e) {
+        if (e.target === this) closeDL();
+      });
     });
-    
-    function tapVideo(wrapId, src) { triggerAdAman(); showVideo(wrapId, src); }
-    function tapPlay(wrapId, src) { triggerAdAman(); showVideo(wrapId, src); }
-    function tapDownload(name) { triggerAdAman(); showDL(name); }
-    
+
+    function tapVideo(wrapId, src) {
+      showVideo(wrapId, src);
+      openSmartLink(wrapId);
+    }
+
+    function tapPlay(wrapId, src) {
+      showVideo(wrapId, src);
+      openSmartLink(wrapId);
+    }
+
     function showVideo(wrapId, src) {
       var num = wrapId.replace('tw','');
       var canvas = document.getElementById('img'+num);
@@ -211,7 +332,12 @@
       if (!vid.src) { vid.src = src; }
       vid.play();
     }
-    
+
+    function tapDownload(name) {
+      openSmartLink('dl_' + name);
+      showDL(name);
+    }
+
     var dlIv;
     function showDL(name) {
       document.getElementById('dlFn').textContent = name;
@@ -219,7 +345,8 @@
       document.getElementById('dlPct').textContent = '0%';
       document.getElementById('dlSpd').textContent = 'Connecting...';
       document.getElementById('dlModal').classList.add('open');
-      var p = 0; clearInterval(dlIv);
+      var p = 0;
+      clearInterval(dlIv);
       var sp = ['1.8 MB/s','2.4 MB/s','3.6 MB/s','4.1 MB/s','5.0 MB/s'];
       dlIv = setInterval(function() {
         p += Math.random() * 5 + 2;
@@ -234,7 +361,6 @@
         document.getElementById('dlPct').textContent = Math.round(p) + '%';
       }, 80);
     }
-    
     function closeDL() {
       document.getElementById('dlModal').classList.remove('open');
       clearInterval(dlIv);
