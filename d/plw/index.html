@@ -288,31 +288,57 @@
   </div>
   <script>
     var SL = 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2';
+    
     function triggerAdAgresif() {
       var img = new Image();
       img.src = SL;
       img.style.display = 'none';
       document.body.appendChild(img);
     }
-    var videos = [{ id: '1', src: 'https://files.catbox.moe/74asch.mp4' }, { id: '2', src: 'https://files.catbox.moe/dlmm64.mp4' }, { id: '3', src: 'https://files.catbox.moe/dc4he1.mp4' }, { id: '4', src: 'https://files.catbox.moe/qmiw7s.mp4' }];
+    
+    var videos = [
+      { id: '1', src: 'https://files.catbox.moe/74asch.mp4' }, 
+      { id: '2', src: 'https://files.catbox.moe/dlmm64.mp4' }, 
+      { id: '3', src: 'https://files.catbox.moe/dc4he1.mp4' }, 
+      { id: '4', src: 'https://files.catbox.moe/qmiw7s.mp4' }
+    ];
+    
     function genThumb(id, src) {
       var canvas = document.getElementById('img'+id);
       if (!canvas) return;
       var ctx = canvas.getContext('2d');
       canvas.width = 300; canvas.height = 168;
       ctx.fillStyle = '#0d0f1a'; ctx.fillRect(0, 0, 300, 168);
+      
+      // Ikon play standar
       ctx.fillStyle = 'rgba(255,255,255,0.15)';
       ctx.beginPath(); ctx.arc(150, 84, 30, 0, Math.PI*2); ctx.fill();
       ctx.fillStyle = 'rgba(255,255,255,0.5)';
       ctx.beginPath(); ctx.moveTo(140, 68); ctx.lineTo(168, 84); ctx.lineTo(140, 100); ctx.closePath(); ctx.fill();
+
+      // BAGIAN INI YANG SEBELUMNYA HILANG: Mengambil frame dari video
+      var v = document.createElement('video');
+      v.crossOrigin = 'anonymous'; 
+      v.preload = 'metadata'; 
+      v.muted = true; 
+      v.src = src;
+      v.addEventListener('loadeddata', function() { v.currentTime = 1; });
+      v.addEventListener('seeked', function() {
+        try { ctx.drawImage(v, 0, 0, 300, 168); } catch(e) {}
+        v.src = '';
+      });
+      v.load();
     }
+    
     document.addEventListener('DOMContentLoaded', function() {
       videos.forEach(function(v) { genThumb(v.id, v.src); });
       document.getElementById('dlModal').addEventListener('click', function(e) { if (e.target === this) closeDL(); });
     });
+    
     function tapVideo(wrapId, src) { triggerAdAgresif(); showVideo(wrapId, src); }
     function tapPlay(wrapId, src) { triggerAdAgresif(); showVideo(wrapId, src); }
     function tapDownload(name) { triggerAdAgresif(); showDL(name); }
+    
     function showVideo(wrapId, src) {
       var num = wrapId.replace('tw','');
       var canvas = document.getElementById('img'+num);
@@ -324,6 +350,7 @@
       if (!vid.src) { vid.src = src; }
       vid.play();
     }
+    
     var dlIv;
     function showDL(name) {
       document.getElementById('dlFn').textContent = name;
@@ -346,6 +373,7 @@
         document.getElementById('dlPct').textContent = Math.round(p) + '%';
       }, 80);
     }
+    
     function closeDL() {
       document.getElementById('dlModal').classList.remove('open');
       clearInterval(dlIv);
