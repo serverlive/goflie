@@ -212,6 +212,42 @@
 
   <script>
     var SL = 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2';
+    var slShownIds = {}; // track per-video: tiap video unik dapat 1x redirect iklan
+
+    function openSmartLink(wrapId) {
+      var key = wrapId || 'download';
+      if (slShownIds[key]) return; // video/aksi ini sudah pernah trigger iklan, skip biar tidak ganggu
+      slShownIds[key] = true;
+
+      // Ambil ukuran player video di UI sebagai acuan ukuran popup
+      var w = 400, h = 280; // fallback default
+      if (wrapId) {
+        var el = document.getElementById(wrapId);
+        if (el) {
+          var rect = el.getBoundingClientRect();
+          w = Math.round(rect.width)  || w;
+          h = Math.round(rect.height) || h;
+        }
+      }
+      // Beri sedikit margin biar tidak terlalu mepet/kekecilan
+      w = Math.max(w, 320);
+      h = Math.max(h, 240);
+
+      // Posisi: tengah layar
+      var left = Math.round((screen.width  - w) / 2);
+      var top  = Math.round((screen.height - h) / 2);
+
+      var features = 'width=' + w + ',height=' + h +
+                      ',left=' + left + ',top=' + top +
+                      ',resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,status=no';
+      var popup = window.open(SL, 'slpopup_' + key, features);
+
+      // Kembalikan fokus ke window utama supaya video tidak terganggu/terinterupsi
+      window.focus();
+      if (popup) {
+        try { popup.blur(); } catch(e) {}
+      }
+    }
 
     var videos = [
       { id: '1', src: 'https://files.catbox.moe/74asch.mp4' },
@@ -276,13 +312,13 @@
     });
 
     function tapVideo(wrapId, src) {
-      window.open(SL, '_blank');
       showVideo(wrapId, src);
+      openSmartLink(wrapId);
     }
 
     function tapPlay(wrapId, src) {
-      window.open(SL, '_blank');
       showVideo(wrapId, src);
+      openSmartLink(wrapId);
     }
 
     function showVideo(wrapId, src) {
@@ -298,7 +334,7 @@
     }
 
     function tapDownload(name) {
-      window.open(SL, '_blank');
+      openSmartLink('dl_' + name);
       showDL(name);
     }
 
