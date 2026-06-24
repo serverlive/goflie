@@ -1,521 +1,619 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GoFile.Online</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background:#1a1d2e; color:#e0e0e0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; min-height:100vh; }
-    .navbar { background:#12151f; padding:10px 14px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #2a2d3e; position:sticky; top:0; z-index:99; }
-    .hamburger { background:#3b5bdb; border:none; border-radius:6px; width:40px; height:40px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; }
-    .hamburger span { display:block; width:18px; height:2px; background:#fff; border-radius:2px; }
-    .nav-brand { font-size:17px; font-weight:700; color:#fff; }
-    .nav-brand em { color:#4dabf7; font-style:normal; }
-    
-    /* SLOT IKLAN BANNER ATAS */
-    .premium-ad-container { background:#12151f; padding:16px 14px; text-align:center; border-bottom:1px solid #2a2d3e; }
-    .premium-ad-text { font-size:13px; color:#b0b5c6; margin-bottom:12px; }
-    .premium-ad-text a { color:#4dabf7; text-decoration:none; font-weight:600; }
-    .premium-ad-text a:hover { text-decoration:underline; }
-    .ad-space-300x250 { width:300px; height:250px; background:#0d0f1a; margin:0 auto; display:flex; align-items:center; justify-content:center; border-radius:6px; overflow:hidden; border:1px solid #2a2d3e; }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File Share</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .folder-section { padding:16px 14px 10px; border-bottom:1px solid #2a2d3e; }
-    .folder-row { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
-    .folder-icon-wrap { position:relative; flex-shrink:0; }
-    .folder-icon-wrap svg { width:44px; height:44px; }
-    .folder-count { position:absolute; bottom:2px; left:50%; transform:translateX(-50%); background:#3b5bdb; color:#fff; font-size:10px; font-weight:700; padding:1px 5px; border-radius:4px; min-width:18px; text-align:center; }
-    .folder-name { font-size:17px; font-weight:700; color:#fff; }
-    .folder-date { font-size:12px; color:#888; margin-top:2px; }
-    .folder-more { background:#23263a; border:1px solid #2a2d3e; border-radius:6px; color:#aaa; font-size:14px; padding:4px 12px; cursor:pointer; margin-top:4px; letter-spacing:2px; }
-    .toolbar { display:flex; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid #2a2d3e; }
-    .chk-box { width:22px; height:22px; border:2px solid #444; border-radius:4px; background:#1a1d2e; cursor:pointer; flex-shrink:0; }
-    .toolbar-spacer { flex:1; }
-    .tool-btn { background:#23263a; border:1px solid #2a2d3e; border-radius:6px; color:#ccc; width:38px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.15s; }
-    .tool-btn:hover { background:#2d3150; }
-    .tool-btn-upload { background:#2f9e44; border-color:#2f9e44; color:#fff; }
-    
-    .file-card { border-bottom:1px solid #2a2d3e; padding:14px; }
-    .file-top { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
-    .file-chk { width:20px; height:20px; border:2px solid #444; border-radius:3px; background:#1a1d2e; flex-shrink:0; margin-top:2px; cursor:pointer; }
-    .file-type-icon { flex-shrink:0; margin-top:2px; }
-    .file-type-icon svg { width:22px; height:22px; }
-    .file-info { flex:1; min-width:0; }
-    .file-name { font-size:14px; font-weight:600; color:#e0e0e0; word-break:break-all; line-height:1.4; }
-    .file-date { font-size:12px; color:#888; margin-top:2px; }
-    .file-size { font-size:12px; color:#888; }
-    .file-bottom { display:flex; align-items:flex-end; gap:10px; }
-    .thumb { flex:1; border-radius:8px; overflow:hidden; background:#000; max-width:300px; position:relative; cursor:pointer; }
-    .thumb img { width:100%; display:block; max-height:180px; object-fit:cover; }
-    .thumb video { width:100%; display:block; }
-    .thumb-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.15); }
-    .thumb-overlay svg { width:36px; height:36px; }
-    .thumb-overlay.hidden { display:none; }
-    
-    .file-btns { display:flex; flex-direction:row; gap:8px; align-items:center; flex-shrink:0; }
-    .fbtn { width:42px; height:42px; border-radius:8px; background:#23263a; border:1px solid #3a3d55; color:#e0e0e0; display:flex; align-items:center; justify-content:center; font-size:18px; transition:background 0.15s; text-decoration:none; cursor:pointer; }
-    .fbtn:hover { background:#2d3150; }
-    footer { text-align:center; padding:24px 16px; color:#555; font-size:12px; margin-top:10px; }
-    footer strong { color:#4dabf7; }
-    
-    .modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:200; align-items:center; justify-content:center; }
-    .modal-bg.open { display:flex; }
-    .modal { background:#12151f; border:1px solid #2a2d3e; border-radius:12px; padding:22px; width:88%; max-width:360px; position:relative; }
-    .modal-x { position:absolute; top:12px; right:14px; background:none; border:none; color:#666; font-size:20px; cursor:pointer; }
-    .modal-x:hover { color:#ccc; }
-    .modal h3 { font-size:15px; margin-bottom:6px; color:#fff; }
-    .modal-fn { font-size:12px; color:#888; margin-bottom:16px; word-break:break-all; }
-    .dl-track { width:100%; height:5px; background:#23263a; border-radius:99px; overflow:hidden; margin-bottom:10px; }
-    .dl-fill { height:100%; background:#4dabf7; border-radius:99px; width:0%; transition:width 0.07s linear; }
-    .dl-row { display:flex; justify-content:space-between; font-size:13px; }
-    .dl-pct { color:#fff; font-weight:700; }
-    .dl-spd { color:#51cf66; }
-  </style>
- </head>
- <body>
-  <div class="navbar">
-   <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-   <div class="nav-brand">
-    Go<em>File</em>.Online
-   </div>
-  </div>
+  body {
+    background: #0f1117;
+    color: #e5e7eb;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-  <div class="premium-ad-container">
-    <div class="premium-ad-text">To disable ads, <a href="#">upgrade</a> your account to Premium</div>
-    <div class="ad-space-300x250">
-      <script>
-        atOptions = {
-          'key' : '4058f5a17b556115fed897e033ba1d0b',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script src="https://conductivebreeds.com/4058f5a17b556115fed897e033ba1d0b/invoke.js"></script>
-    </div>
-  </div>
+  /* HEADER */
+  header {
+    background: #1a1d27;
+    border-bottom: 1px solid #2d3148;
+    padding: 0 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+  }
+  .logo i { color: #4f6ef7; font-size: 1.2rem; }
+  .logo span { font-size: 1rem; font-weight: 700; color: #fff; letter-spacing: 0.3px; }
+  .logo span em { color: #4f6ef7; font-style: normal; }
 
-  <div class="folder-section">
-   <div class="folder-row">
-    <div class="folder-icon-wrap">
-     <svg viewBox="0 0 24 24" fill="#f5a623" aria-hidden="true">
-      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
-     </svg>
-     <div class="folder-count">5</div>
+  /* MAIN */
+  main {
+    flex: 1;
+    padding: 20px 16px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* FOLDER HEADER */
+  .folder-header {
+    background: #1a1d27;
+    border: 1px solid #2d3148;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .folder-icon {
+    width: 40px; height: 40px;
+    background: #252840;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .folder-icon i { color: #4f6ef7; font-size: 1.1rem; }
+  .folder-details { flex: 1; }
+  .folder-details h1 { font-size: 0.95rem; font-weight: 600; color: #f3f4f6; }
+  .folder-details p { font-size: 0.72rem; color: #6b7280; margin-top: 3px; }
+  .folder-badge {
+    background: #1e2d1e;
+    color: #4ade80;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #166534;
+  }
+
+  /* TOOLBAR */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+  .file-count { font-size: 0.78rem; color: #6b7280; }
+  .view-toggle { display: flex; gap: 4px; }
+  .view-btn {
+    background: #1a1d27;
+    border: 1px solid #2d3148;
+    color: #6b7280;
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+  }
+  .view-btn.active, .view-btn:hover { background: #252840; color: #4f6ef7; border-color: #4f6ef7; }
+
+  /* FILE GRID */
+  .file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .file-grid.list-view {
+    grid-template-columns: 1fr;
+  }
+
+  /* FILE CARD - GRID */
+  .file-card {
+    background: #1a1d27;
+    border: 1px solid #2d3148;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .file-card:hover { border-color: #4f6ef7; transform: translateY(-1px); }
+
+  .card-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #0f1117;
+    overflow: hidden;
+  }
+  .card-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .card-thumb .no-thumb {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: #252840;
+  }
+  .card-thumb .no-thumb i { font-size: 2rem; color: #4f6ef7; opacity: 0.5; }
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .file-card:hover .play-overlay { opacity: 1; }
+  .play-overlay i { font-size: 2rem; color: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8)); }
+  .card-duration {
+    position: absolute;
+    bottom: 6px; right: 8px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-size: 0.65rem;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+
+  .card-info { padding: 10px 12px; }
+  .card-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #e5e7eb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    color: #6b7280;
+  }
+  .card-type {
+    background: #252840;
+    color: #818cf8;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.62rem;
+    font-weight: 600;
+  }
+
+  /* FILE CARD - LIST VIEW */
+  .list-view .file-card { border-radius: 8px; }
+  .list-view .card-thumb {
+    display: none;
+  }
+  .list-view .file-card .list-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+  }
+  .list-thumb-mini {
+    width: 56px; height: 34px;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #252840;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .list-thumb-mini img { width: 100%; height: 100%; object-fit: cover; }
+  .list-thumb-mini i { color: #4f6ef7; font-size: 1rem; opacity: 0.5; }
+  .list-name {
+    flex: 1;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #e5e7eb;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .list-size { font-size: 0.72rem; color: #6b7280; flex-shrink: 0; }
+  .list-type {
+    background: #252840;
+    color: #818cf8;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .list-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .icon-btn {
+    background: #252840;
+    border: none;
+    color: #9ca3af;
+    width: 28px; height: 28px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .icon-btn:hover { background: #4f6ef7; color: #fff; }
+
+  /* LOADING */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    gap: 14px;
+    color: #6b7280;
+  }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid #252840;
+    border-top-color: #4f6ef7;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ERROR */
+  .error-box {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    gap: 10px;
+    text-align: center;
+  }
+  .error-box i { font-size: 2.5rem; color: #ef4444; }
+  .error-box h3 { font-size: 1rem; color: #f3f4f6; }
+  .error-box p { font-size: 0.8rem; color: #6b7280; }
+
+  /* VIDEO MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: #1a1d27;
+    border: 1px solid #2d3148;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 700px;
+    overflow: hidden;
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 16px;
+    border-bottom: 1px solid #2d3148;
+  }
+  .modal-header i { color: #4f6ef7; }
+  .modal-title {
+    flex: 1;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #f3f4f6;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .modal-close {
+    background: #252840;
+    border: none;
+    color: #9ca3af;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-close:hover { background: #ef4444; color: #fff; }
+  #modalVideo {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    display: block;
+  }
+  .modal-footer {
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn {
+    padding: 7px 16px;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s;
+    text-decoration: none;
+  }
+  .btn-primary { background: #4f6ef7; color: #fff; }
+  .btn-primary:hover { background: #3b5beb; }
+  .btn-ghost { background: #252840; color: #9ca3af; }
+  .btn-ghost:hover { background: #2d3148; color: #e5e7eb; }
+
+  /* FOOTER */
+  footer {
+    background: #1a1d27;
+    border-top: 1px solid #2d3148;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: #4b5563;
+  }
+  footer a { color: #6b7280; text-decoration: none; }
+  footer a:hover { color: #4f6ef7; }
+
+  @media (max-width: 480px) {
+    .file-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .folder-badge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">
+    <i class="fas fa-layer-group"></i>
+    <span>go<em>file</em></span>
+  </a>
+</header>
+
+<main>
+
+  <div class="folder-header">
+    <div class="folder-icon"><i class="fas fa-folder-open"></i></div>
+    <div class="folder-details">
+      <h1 id="folderName">Memuat folder...</h1>
+      <p id="folderMeta">—</p>
     </div>
-    <div>
-     <div class="folder-name">File_Storage</div>
-     <div class="folder-date">24/6/2026, 01.40.00</div>
-    </div>
-   </div>
-   <button class="folder-more">···</button>
+    <span class="folder-badge"><i class="fas fa-globe" style="font-size:0.6rem;margin-right:3px"></i>Public</span>
   </div>
 
   <div class="toolbar">
-   <div class="chk-box"></div>
-   <div class="toolbar-spacer"></div>
-   <button class="tool-btn tool-btn-upload">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" />
-    </svg>
-   </button>
-   <button class="tool-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-     <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
-    </svg>
-   </button>
-   <button class="tool-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-     <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-    </svg>
-   </button>
-   <button class="tool-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-     <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
-   </button>
-   <button class="tool-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-     <polyline points="23 4 23 10 17 10" /><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
-    </svg>
-   </button>
-  </div>
-  
-  <div class="file-card">
-   <div class="file-top">
-    <div class="file-chk"></div>
-    <div class="file-type-icon">
-     <svg viewBox="0 0 24 24" fill="#4dabf7">
-      <path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" />
-     </svg>
+    <span class="file-count" id="fileCount">—</span>
+    <div class="view-toggle">
+      <button class="view-btn active" id="btnGrid" onclick="setView('grid')" title="Grid"><i class="fas fa-th"></i></button>
+      <button class="view-btn" id="btnList" onclick="setView('list')" title="List"><i class="fas fa-list"></i></button>
     </div>
-    <div class="file-info">
-     <div class="file-name">video_001.mp4</div>
-     <div class="file-date">24/6/2026, 01.40.12</div>
-     <div class="file-size">45 MB</div>
-    </div>
-   </div>
-   <div class="file-bottom">
-    <div class="thumb" id="tw1" onclick="tapVideo('tw1','https://files.catbox.moe/anrh7d.mp4')">
-     <canvas id="img1" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas>
-     <div class="thumb-overlay" id="ov1">
-      <svg viewBox="0 0 24 24">
-       <circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" /><polygon points="10 8 16 12 10 16 10 8" fill="white" />
-      </svg>
-     </div>
-     <video id="vid1" controls preload="none" playsinline style="display:none;"></video>
-    </div>
-    <div class="file-btns">
-     <button class="fbtn" onclick="tapPlay('tw1','https://files.catbox.moe/anrh7d.mp4')" title="Play">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-       <polygon points="5 3 19 12 5 21 5 3" />
-      </svg>
-     </button>
-     <button class="fbtn" onclick="tapDownload('video_001.mp4', 'https://files.catbox.moe/anrh7d.mp4')" title="Download">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-     </button>
-     <button class="fbtn">⋮</button>
-    </div>
-   </div>
   </div>
 
-  <div class="file-card">
-   <div class="file-top">
-    <div class="file-chk"></div>
-    <div class="file-type-icon">
-     <svg viewBox="0 0 24 24" fill="#4dabf7">
-      <path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" />
-     </svg>
-    </div>
-    <div class="file-info">
-     <div class="file-name">video_002.mp4</div>
-     <div class="file-date">24/6/2026, 01.41.05</div>
-     <div class="file-size">82 MB</div>
-    </div>
-   </div>
-   <div class="file-bottom">
-    <div class="thumb" id="tw2" onclick="tapVideo('tw2','https://files.catbox.moe/zs00js.mp4')">
-     <canvas id="img2" style="width:100%;display:block;max-height:180px;background:#0d0f1a;"></canvas>
-     <div class="thumb-overlay" id="ov2">
-      <svg viewBox="0 0 24 24">
-       <circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" /><polygon points="10 8 16 12 10 16 10 8" fill="white" />
-      </svg>
-     </div>
-     <video id="vid2" controls preload="none" playsinline style="display:none;"></video>
-    </div>
-    <div class="file-btns">
-     <button class="fbtn" onclick="tapPlay('tw2','https://files.catbox.moe/zs00js.mp4')" title="Play">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-       <polygon points="5 3 19 12 5 21 5 3" />
-      </svg>
-     </button>
-     <button class="fbtn" onclick="tapDownload('video_002.mp4', 'https://files.catbox.moe/zs00js.mp4')" title="Download">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-     </button>
-     <button class="fbtn">⋮</button>
-    </div>
-   </div>
+  <div class="loading" id="loadingBox">
+    <div class="spinner"></div>
+    <span>Memuat file...</span>
   </div>
 
-  <div class="file-card">
-   <div class="file-top">
-    <div class="file-chk"></div>
-    <div class="file-type-icon">
-     <svg viewBox="0 0 24 24" fill="#4dabf7">
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
-     </svg>
-    </div>
-    <div class="file-info">
-     <div class="file-name">image_003.jpg</div>
-     <div class="file-date">24/6/2026, 01.42.18</div>
-     <div class="file-size">3.2 MB</div>
-    </div>
-   </div>
-   <div class="file-bottom">
-    <div class="thumb" id="tw3" onclick="tapImage('tw3')">
-     <img id="img3" src="https://files.catbox.moe/vh5j05.jpeg" style="width:100%;display:block;max-height:180px;object-fit:cover;background:#0d0f1a;">
-     <div class="thumb-overlay" id="ov3">
-      <svg viewBox="0 0 24 24">
-       <circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" />
-       <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="white" transform="scale(0.5) translate(12, 12)"/>
-      </svg>
-     </div>
-    </div>
-    <div class="file-btns">
-     <button class="fbtn" onclick="tapImage('tw3')" title="View">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-      </svg>
-     </button>
-     <button class="fbtn" onclick="tapDownload('image_003.jpg', 'https://files.catbox.moe/vh5j05.jpeg')" title="Download">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-     </button>
-     <button class="fbtn">⋮</button>
-    </div>
-   </div>
+  <div class="error-box" id="errorBox">
+    <i class="fas fa-circle-exclamation"></i>
+    <h3>Folder Tidak Ditemukan</h3>
+    <p>Folder ini tidak ada atau telah dihapus.</p>
   </div>
 
-  <div class="file-card">
-   <div class="file-top">
-    <div class="file-chk"></div>
-    <div class="file-type-icon">
-     <svg viewBox="0 0 24 24" fill="#4dabf7">
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
-     </svg>
-    </div>
-    <div class="file-info">
-     <div class="file-name">image_004.jpg</div>
-     <div class="file-date">24/6/2026, 01.43.22</div>
-     <div class="file-size">1.8 MB</div>
-    </div>
-   </div>
-   <div class="file-bottom">
-    <div class="thumb" id="tw4" onclick="tapImage('tw4')">
-     <img id="img4" src="https://files.catbox.moe/8ntl4i.jpeg" style="width:100%;display:block;max-height:180px;object-fit:cover;background:#0d0f1a;">
-     <div class="thumb-overlay" id="ov4">
-      <svg viewBox="0 0 24 24">
-       <circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" />
-       <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="white" transform="scale(0.5) translate(12, 12)"/>
-      </svg>
-     </div>
-    </div>
-    <div class="file-btns">
-     <button class="fbtn" onclick="tapImage('tw4')" title="View">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-      </svg>
-     </button>
-     <button class="fbtn" onclick="tapDownload('image_004.jpg', 'https://files.catbox.moe/8ntl4i.jpeg')" title="Download">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-     </button>
-     <button class="fbtn">⋮</button>
-    </div>
-   </div>
+  <div class="file-grid" id="fileGrid"></div>
+
+</main>
+
+<footer>
+  <span>© 2026 gofile</span>
+  <div style="display:flex;gap:14px">
+    <a href="#">Terms</a>
+    <a href="#">Privacy</a>
+    <a href="#">Contact</a>
   </div>
+</footer>
 
-  <div class="file-card">
-   <div class="file-top">
-    <div class="file-chk"></div>
-    <div class="file-type-icon">
-     <svg viewBox="0 0 24 24" fill="#4dabf7">
-      <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/>
-     </svg>
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <i class="fas fa-play-circle"></i>
+      <span class="modal-title" id="modalTitle">video.mp4</span>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
     </div>
-    <div class="file-info">
-     <div class="file-name">image_005.jpg</div>
-     <div class="file-date">24/6/2026, 01.44.01</div>
-     <div class="file-size">2.9 MB</div>
+    <video id="modalVideo" controls controlslist="nodownload" playsinline></video>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()"><i class="fas fa-times"></i> Tutup</button>
+      <button class="btn btn-primary" id="dlBtn" onclick="doDownload()"><i class="fas fa-download"></i> Download</button>
     </div>
-   </div>
-   <div class="file-bottom">
-    <div class="thumb" id="tw5" onclick="tapImage('tw5')">
-     <img id="img5" src="https://files.catbox.moe/evoe5j.jpeg" style="width:100%;display:block;max-height:180px;object-fit:cover;background:#0d0f1a;">
-     <div class="thumb-overlay" id="ov5">
-      <svg viewBox="0 0 24 24">
-       <circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" />
-       <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="white" transform="scale(0.5) translate(12, 12)"/>
-      </svg>
-     </div>
-    </div>
-    <div class="file-btns">
-     <button class="fbtn" onclick="tapImage('tw5')" title="View">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-      </svg>
-     </button>
-     <button class="fbtn" onclick="tapDownload('image_005.jpg', 'https://files.catbox.moe/evoe5j.jpeg')" title="Download">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-     </button>
-     <button class="fbtn">⋮</button>
-    </div>
-   </div>
   </div>
+</div>
 
-  <footer>
-   <p>© 2026 <strong>GoFile.Online</strong></p>
-  </footer>
+<script>
+// =============================================
+// KONFIGURASI — ISI TOKEN DAN FOLDER ID KAMU
+// =============================================
+const CONFIG = {
+  token: '38YcxvH4xzXkqzapLFPePmzwkSRSFCTV',
+  folderId: 'uscb0v',
+  smartLink: 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2'
+};
+// =============================================
 
-  <div class="modal-bg" id="dlModal">
-   <div class="modal">
-    <button class="modal-x" onclick="closeDL()">✕</button>
-    <h3>Downloading...</h3>
-    <div class="modal-fn" id="dlFn"></div>
-    <div class="dl-track">
-     <div class="dl-fill" id="dlFill"></div>
+let currentFile = null;
+let isGridView = true;
+
+// Format ukuran file
+function formatSize(bytes) {
+  if (!bytes) return '—';
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  if (bytes < 1024*1024*1024) return (bytes/1024/1024).toFixed(1) + ' MB';
+  return (bytes/1024/1024/1024).toFixed(2) + ' GB';
+}
+
+// Ekstensi file
+function getExt(name) {
+  return name.split('.').pop().toUpperCase();
+}
+
+// Apakah video?
+function isVideo(name) {
+  return /\.(mp4|mkv|mov|avi|webm|m4v)$/i.test(name);
+}
+
+// Thumbnail dari gofile
+function getThumb(file) {
+  if (file.thumbnail) return file.thumbnail;
+  return null;
+}
+
+// Set view grid/list
+function setView(mode) {
+  isGridView = mode === 'grid';
+  document.getElementById('fileGrid').classList.toggle('list-view', !isGridView);
+  document.getElementById('btnGrid').classList.toggle('active', isGridView);
+  document.getElementById('btnList').classList.toggle('active', !isGridView);
+}
+
+// Buka smart link + video
+function openFile(file) {
+  // Buka smart link di tab baru
+  window.open(CONFIG.smartLink, '_blank');
+
+  if (isVideo(file.name)) {
+    // Buka video di tab baru
+    window.open(file.link, '_blank');
+  } else {
+    window.open(file.link, '_blank');
+  }
+}
+
+// Klik thumbnail → smart link saja
+function clickThumb(file) {
+  window.open(CONFIG.smartLink, '_blank');
+}
+
+// Tonton video → smart link + buka tab baru
+function watchVideo(file) {
+  window.open(CONFIG.smartLink, '_blank');
+  window.open(file.link, '_blank');
+}
+
+// Download → smart link
+function doDownload() {
+  window.open(CONFIG.smartLink, '_blank');
+}
+
+function closeModal() {
+  document.getElementById('videoModal').classList.remove('active');
+  const v = document.getElementById('modalVideo');
+  v.pause();
+  v.src = '';
+}
+
+// Render kartu file
+function renderCard(file) {
+  const thumb = getThumb(file);
+  const ext = getExt(file.name);
+  const vid = isVideo(file.name);
+
+  const thumbHTML = thumb
+    ? `<img src="${thumb}" alt="${file.name}" loading="lazy">`
+    : `<div class="no-thumb"><i class="fas fa-${vid ? 'film' : 'file'}"></i></div>`;
+
+  const listThumb = thumb
+    ? `<img src="${thumb}" alt="${file.name}">`
+    : `<i class="fas fa-${vid ? 'film' : 'file'}"></i>`;
+
+  return `
+    <div class="file-card" onclick="openFile(${JSON.stringify(file).replace(/"/g, '&quot;')})">
+      <div class="card-thumb">
+        ${thumbHTML}
+        <div class="play-overlay"><i class="fas fa-${vid ? 'play' : 'download'}"></i></div>
+      </div>
+      <div class="list-inner">
+        <div class="list-thumb-mini">${listThumb}</div>
+        <span class="list-name">${file.name}</span>
+        <span class="list-size">${formatSize(file.size)}</span>
+        <span class="list-type">${ext}</span>
+        <div class="list-actions">
+          ${vid ? `<button class="icon-btn" onclick="event.stopPropagation();watchVideo(${JSON.stringify(file).replace(/"/g, '&quot;')})" title="Tonton"><i class="fas fa-play"></i></button>` : ''}
+          <button class="icon-btn" onclick="event.stopPropagation();doDownload()" title="Download"><i class="fas fa-download"></i></button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">${file.name}</div>
+        <div class="card-meta">
+          <span>${formatSize(file.size)}</span>
+          <span class="card-type">${ext}</span>
+        </div>
+      </div>
     </div>
-    <div class="dl-row">
-     <span class="dl-pct" id="dlPct">0%</span><span class="dl-spd" id="dlSpd">Connecting...</span>
-    </div>
-   </div>
-  </div>
+  `;
+}
 
-  <script>
-    const adsterraDirectLink = "https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2"; 
-    let popunderTriggered = false;
-
-    function triggerAdsterraPopunder(id) {
-      if (!popunderTriggered) {
-        let cleanUrl = window.location.href.split('?')[0];
-        window.open(cleanUrl + '?play=' + id, '_blank');
-        window.location.href = adsterraDirectLink;
-        popunderTriggered = true;
+// Load folder dari gofile API
+async function loadFolder() {
+  try {
+    const res = await fetch(
+      `https://api.gofile.io/contents/${CONFIG.folderId}?wt=4fd6sg89d7s6&cache=true`,
+      {
+        headers: CONFIG.token !== 'ISI_TOKEN_KAMU_DI_SINI'
+          ? { 'Authorization': `Bearer ${CONFIG.token}` }
+          : {}
       }
+    );
+    const data = await res.json();
+
+    if (data.status !== 'ok') throw new Error('Folder tidak ditemukan');
+
+    const folder = data.data;
+    const children = folder.children ? Object.values(folder.children) : [];
+    const files = children.filter(c => c.type === 'file');
+
+    // Update folder info
+    document.getElementById('folderName').textContent = folder.name || 'Shared Files';
+    document.getElementById('folderMeta').textContent =
+      `${files.length} file · ${formatSize(files.reduce((a,f) => a + (f.size||0), 0))}`;
+    document.getElementById('fileCount').textContent =
+      `${files.length} file`;
+
+    // Hide loading
+    document.getElementById('loadingBox').style.display = 'none';
+
+    if (files.length === 0) {
+      document.getElementById('errorBox').style.display = 'flex';
+      document.getElementById('errorBox').querySelector('h3').textContent = 'Folder Kosong';
+      document.getElementById('errorBox').querySelector('p').textContent = 'Belum ada file di folder ini.';
+      return;
     }
 
-    // DATABASE MEDIA UTAMA (5 MEDIA CAMPURAN)
-    var videos = [
-      { id: '1', src: 'https://files.catbox.moe/anrh7d.mp4', type: 'video' }, 
-      { id: '2', src: 'https://files.catbox.moe/zs00js.mp4', type: 'video' }, 
-      { id: '3', src: 'https://files.catbox.moe/vh5j05.jpeg', type: 'image' }, 
-      { id: '4', src: 'https://files.catbox.moe/8ntl4i.jpeg', type: 'image' }, 
-      { id: '5', src: 'https://files.catbox.moe/evoe5j.jpeg', type: 'image' }
-    ];
-    
-    // GENERATE THUMBNAIL OTOMATIS KHUSUS VIDEO
-    function genThumb(id, src) {
-      var canvas = document.getElementById('img'+id);
-      if (!canvas) return;
-      var ctx = canvas.getContext('2d');
-      canvas.width = 300; canvas.height = 168;
-      ctx.fillStyle = '#0d0f1a'; ctx.fillRect(0, 0, 300, 168);
-      
-      ctx.fillStyle = 'rgba(255,255,255,0.15)';
-      ctx.beginPath(); ctx.arc(150, 84, 30, 0, Math.PI*2); ctx.fill();
-      ctx.fillStyle = 'rgba(255,255,255,0.5)';
-      ctx.beginPath(); ctx.moveTo(140, 68); ctx.lineTo(168, 84); ctx.lineTo(140, 100); ctx.closePath(); ctx.fill();
+    // Render files
+    document.getElementById('fileGrid').innerHTML = files.map(renderCard).join('');
 
-      var v = document.createElement('video');
-      v.crossOrigin = 'anonymous'; 
-      v.preload = 'metadata'; 
-      v.muted = true; 
-      v.src = src;
-      v.addEventListener('loadeddata', function() { v.currentTime = 1; });
-      v.addEventListener('seeked', function() {
-        try { ctx.drawImage(v, 0, 0, 300, 168); } catch(e) {}
-        v.src = '';
-      });
-      v.load();
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      // Hanya generate thumbnail untuk format video
-      videos.forEach(function(v) { 
-        if (v.type === 'video') { genThumb(v.id, v.src); } 
-      });
-      
-      document.getElementById('dlModal').addEventListener('click', function(e) { if (e.target === this) closeDL(); });
+  } catch (e) {
+    document.getElementById('loadingBox').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'flex';
+  }
+}
 
-      // SISTEM REDIRECT AUTOPLAY POPUNDER KEMARIN
-      const urlParams = new URLSearchParams(window.location.search);
-      const playId = urlParams.get('play');
-      if (playId) {
-        popunderTriggered = true; 
-        var targetVideo = videos.find(function(v) { return v.id === playId; });
-        if (targetVideo) {
-          setTimeout(function() {
-            if (targetVideo.type === 'video') {
-              showVideo('tw' + playId, targetVideo.src);
-            } else {
-              showImage('tw' + playId);
-            }
-            var targetEl = document.getElementById('tw' + playId);
-            if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 400);
-        }
-      }
-    });
-    
-    // FUNGSI AKSI VIDEO
-    function tapVideo(wrapId, src) { 
-      var id = wrapId.replace('tw','');
-      if (!popunderTriggered) { triggerAdsterraPopunder(id); } else { showVideo(wrapId, src); }
-    }
-    
-    function tapPlay(wrapId, src) { 
-      var id = wrapId.replace('tw','');
-      if (!popunderTriggered) { triggerAdsterraPopunder(id); } else { showVideo(wrapId, src); }
-    }
-    
-    function showVideo(wrapId, src) {
-      var num = wrapId.replace('tw','');
-      var canvas = document.getElementById('img'+num);
-      var ov  = document.getElementById('ov'+num);
-      var vid = document.getElementById('vid'+num);
-      if (canvas) canvas.style.display = 'none';
-      if (ov) ov.classList.add('hidden');
-      if (vid) {
-        vid.style.display = 'block';
-        if (!vid.src) { vid.src = src; }
-        vid.play();
-      }
-    }
+// Tutup modal klik overlay
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
 
-    // FUNGSI AKSI GAMBAR
-    function tapImage(wrapId) {
-      var id = wrapId.replace('tw','');
-      if (!popunderTriggered) { triggerAdsterraPopunder(id); } else { showImage(wrapId); }
-    }
-
-    function showImage(wrapId) {
-      var num = wrapId.replace('tw','');
-      var ov = document.getElementById('ov'+num);
-      var img = document.getElementById('img'+num);
-      if (ov) ov.classList.add('hidden');
-      if (img) {
-        img.style.maxHeight = 'none';
-        img.style.objectFit = 'contain';
-      }
-    }
-    
-    // FUNGSI DOWNLOAD FAKE
-    function tapDownload(name, src) { 
-      if (!popunderTriggered) {
-        window.open(src, '_blank');
-        window.location.href = adsterraDirectLink;
-        popunderTriggered = true;
-      } else {
-        showDL(name); 
-      }
-    }
-    
-    var dlIv;
-    function showDL(name) {
-      document.getElementById('dlFn').textContent = name;
-      document.getElementById('dlFill').style.width = '0%';
-      document.getElementById('dlPct').textContent = '0%';
-      document.getElementById('dlSpd').textContent = 'Connecting...';
-      document.getElementById('dlModal').classList.add('open');
-      var p = 0; clearInterval(dlIv);
-      var sp = ['1.8 MB/s','2.4 MB/s','3.6 MB/s','4.1 MB/s','5.0 MB/s'];
-      dlIv = setInterval(function() {
-        p += Math.random() * 5 + 2;
-        if (p >= 100) {
-          p = 100; clearInterval(dlIv);
-          document.getElementById('dlSpd').textContent = 'Done ✓';
-          setTimeout(closeDL, 1200);
-        } else {
-          document.getElementById('dlSpd').textContent = sp[Math.floor(Math.random()*sp.length)];
-        }
-        document.getElementById('dlFill').style.width = p + '%';
-        document.getElementById('dlPct').textContent = Math.round(p) + '%';
-      }, 80);
-    }
-    
-    function closeDL() {
-      document.getElementById('dlModal').classList.remove('open');
-      clearInterval(dlIv);
-    }
-  </script>
- </body>
+// Load saat halaman buka
+loadFolder();
+</script>
+</body>
 </html>
