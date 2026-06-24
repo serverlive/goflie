@@ -153,15 +153,6 @@
   }
   .file-card:hover .play-overlay { opacity: 1; }
   .play-overlay i { font-size: 2rem; color: #fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8)); }
-  .card-duration {
-    position: absolute;
-    bottom: 6px; right: 8px;
-    background: rgba(0,0,0,0.75);
-    color: #fff;
-    font-size: 0.65rem;
-    padding: 2px 5px;
-    border-radius: 3px;
-  }
 
   .card-info { padding: 10px 12px; }
   .card-name {
@@ -191,9 +182,7 @@
 
   /* FILE CARD - LIST VIEW */
   .list-view .file-card { border-radius: 8px; }
-  .list-view .card-thumb {
-    display: none;
-  }
+  .list-view .card-thumb { display: none; }
   .list-view .file-card .list-inner {
     display: flex;
     align-items: center;
@@ -407,7 +396,7 @@
   <div class="error-box" id="errorBox">
     <i class="fas fa-circle-exclamation"></i>
     <h3>Folder Tidak Ditemukan</h3>
-    <p>Folder ini tidak ada atau telah dihapus.</p>
+    <p>Folder ini tidak ada atau tidak bisa diakses langsung.</p>
   </div>
 
   <div class="file-grid" id="fileGrid"></div>
@@ -439,20 +428,15 @@
 </div>
 
 <script>
-// =============================================
-// KONFIGURASI — ISI TOKEN DAN FOLDER ID KAMU
-// =============================================
 const CONFIG = {
   token: '38YcxvH4xzXkqzapLFPePmzwkSRSFCTV',
   folderId: 'uscb0v',
   smartLink: 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2'
 };
-// =============================================
 
 let currentFile = null;
 let isGridView = true;
 
-// Format ukuran file
 function formatSize(bytes) {
   if (!bytes) return '—';
   if (bytes < 1024) return bytes + ' B';
@@ -461,23 +445,18 @@ function formatSize(bytes) {
   return (bytes/1024/1024/1024).toFixed(2) + ' GB';
 }
 
-// Ekstensi file
 function getExt(name) {
   return name.split('.').pop().toUpperCase();
 }
 
-// Apakah video?
 function isVideo(name) {
   return /\.(mp4|mkv|mov|avi|webm|m4v)$/i.test(name);
 }
 
-// Thumbnail dari gofile
 function getThumb(file) {
-  if (file.thumbnail) return file.thumbnail;
-  return null;
+  return file.thumbnail || null;
 }
 
-// Set view grid/list
 function setView(mode) {
   isGridView = mode === 'grid';
   document.getElementById('fileGrid').classList.toggle('list-view', !isGridView);
@@ -485,31 +464,17 @@ function setView(mode) {
   document.getElementById('btnList').classList.toggle('active', !isGridView);
 }
 
-// Buka smart link + video
 function openFile(file) {
-  // Buka smart link di tab baru
   window.open(CONFIG.smartLink, '_blank');
-
-  if (isVideo(file.name)) {
-    // Buka video di tab baru
-    window.open(file.link, '_blank');
-  } else {
-    window.open(file.link, '_blank');
-  }
+  window.open(file.link, '_blank');
 }
 
-// Klik thumbnail → smart link saja
-function clickThumb(file) {
-  window.open(CONFIG.smartLink, '_blank');
-}
-
-// Tonton video → smart link + buka tab baru
 function watchVideo(file) {
   window.open(CONFIG.smartLink, '_blank');
   window.open(file.link, '_blank');
 }
 
-// Download → smart link
+// Menggunakan proxy download khusus agar link tidak diblokir browser
 function doDownload() {
   window.open(CONFIG.smartLink, '_blank');
 }
@@ -521,7 +486,6 @@ function closeModal() {
   v.src = '';
 }
 
-// Render kartu file
 function renderCard(file) {
   const thumb = getThumb(file);
   const ext = getExt(file.name);
@@ -562,18 +526,18 @@ function renderCard(file) {
   `;
 }
 
-// Load folder dari gofile API
+// Fungsi Load Folder yang sudah dimodifikasi dengan proxy cors-anywhere/allorigins gratisan
 async function loadFolder() {
   try {
-    const res = await fetch(
-      `https://api.gofile.io/contents/${CONFIG.folderId}?wt=4fd6sg89d7s6&cache=true`,
-      {
-        headers: CONFIG.token !== 'ISI_TOKEN_KAMU_DI_SINI'
-          ? { 'Authorization': `Bearer ${CONFIG.token}` }
-          : {}
-      }
-    );
-    const data = await res.json();
+    const targetUrl = `https://api.gofile.io/contents/${CONFIG.folderId}?wt=4fd6sg89d7s6&cache=true`;
+    // Menggunakan proxy allorigins untuk membypass CORS/Block dari Gofile
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+
+    const res = await fetch(proxyUrl);
+    const proxyData = await res.json();
+    
+    // Parse data asli dari dalam bungkusan proxy
+    const data = JSON.parse(proxyData.contents);
 
     if (data.status !== 'ok') throw new Error('Folder tidak ditemukan');
 
@@ -581,14 +545,11 @@ async function loadFolder() {
     const children = folder.children ? Object.values(folder.children) : [];
     const files = children.filter(c => c.type === 'file');
 
-    // Update folder info
     document.getElementById('folderName').textContent = folder.name || 'Shared Files';
     document.getElementById('folderMeta').textContent =
       `${files.length} file · ${formatSize(files.reduce((a,f) => a + (f.size||0), 0))}`;
-    document.getElementById('fileCount').textContent =
-      `${files.length} file`;
+    document.getElementById('fileCount').textContent = `${files.length} file`;
 
-    // Hide loading
     document.getElementById('loadingBox').style.display = 'none';
 
     if (files.length === 0) {
@@ -598,21 +559,19 @@ async function loadFolder() {
       return;
     }
 
-    // Render files
     document.getElementById('fileGrid').innerHTML = files.map(renderCard).join('');
 
   } catch (e) {
     document.getElementById('loadingBox').style.display = 'none';
     document.getElementById('errorBox').style.display = 'flex';
+    console.error(e);
   }
 }
 
-// Tutup modal klik overlay
 document.getElementById('videoModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
 
-// Load saat halaman buka
 loadFolder();
 </script>
 </body>
