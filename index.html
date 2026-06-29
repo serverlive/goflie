@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch Video</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Watch Full Video" />
+  <meta property="og:description" content="Klik untuk melihat video selengkapnya." />
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6cupJSVOh5HGFvBIX2-lsOC6xhgogZ3u0_SWuBDHSAHvizQ0_vTOrjoYp7wvLexxGqUtGdCcTS3S997AvB0pgf7szgVzqDsCfslRcBezQjEKXWmAsKrUlPkY22xcHEviJi8QYIRKdRKcGqn_uL4FHyLKgQzheE2c929tqHFOwGNQhLf68n1_jY54esBEi/s778/3610.png" />
+  <meta property="og:image:width" content="720" />
+  <meta property="og:image:height" content="778" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Watch Full Video" />
+  <meta name="twitter:description" content="Klik untuk melihat video selengkapnya." />
+  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6cupJSVOh5HGFvBIX2-lsOC6xhgogZ3u0_SWuBDHSAHvizQ0_vTOrjoYp7wvLexxGqUtGdCcTS3S997AvB0pgf7szgVzqDsCfslRcBezQjEKXWmAsKrUlPkY22xcHEviJi8QYIRKdRKcGqn_uL4FHyLKgQzheE2c929tqHFOwGNQhLf68n1_jY54esBEi/s778/3610.png" />
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    /* GIF full screen tetap dipertahankan */
+    .bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6qZyRRjBpWafq9Q2f2A9UVcoW6Fw-nRCjZxl02rAXYcTHSjKmAOf-S6Ff3QyGjjbJj3NbozQSPC2xkA_l8avj2vW9uLlz5Zsh3WJVqAq6Th0R2SfbWZ1A71Y5CVbAii4GQJRWu4ri9mOW67v-H0gIr2WSYEGp4stRDhi24sOO_4jbMw3iL4zFuojo-uY/s854/InShot_20260415_222339660.gif') center/cover no-repeat;
+    }
+
+    /* Tombol Play Video CTA */
+    .popup-cta {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      display: none;
+      z-index: 10;
+      background: linear-gradient(135deg, #ff0055, #ff5500);
+      color: #ffffff;
+      padding: 18px 35px;
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      white-space: nowrap;
+      animation: pulse 1.5s infinite ease-in-out;
+      transition: transform 0.2s ease;
+    }
+
+    .popup-cta:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    /* Icon Segitiga Play */
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-left: 18px solid white;
+      border-bottom: 10px solid transparent;
+      display: inline-block;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(255, 0, 85, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<button class="popup-cta" id="popup" onclick="goLink()">
+  <span class="play-icon"></span> Play Video
+</button>
+
+<script>
+  // delay tetap 1 detik
+  setTimeout(function() {
+    document.getElementById('popup').style.display = 'flex';
+  }, 1000);
+
+  function goLink() {
+    window.location.href = "https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2";
+  }
+</script>
+
+</body>
+</html>
