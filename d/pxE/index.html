@@ -344,7 +344,7 @@ body {
 
 <script>
 // =======================================================================
-// LOGIKA BARU: KLIK THUMBNAIL -> VIDEO DI TAB BARU, IKLAN DI TAB LAMA
+// LOGIKA BARU: KLIK THUMBNAIL -> IKLAN DI TAB BARU, VIDEO DI TAB LAMA
 // =======================================================================
 const adUrl = 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2';
 
@@ -356,11 +356,11 @@ document.querySelectorAll('.video-preview').forEach(function(vid) {
         // Mengambil sumber link video
         const videoSrc = vid.querySelector('source').src;
         
-        // 1. Membuka video di tab baru secara langsung
-        window.open(videoSrc, '_blank');
+        // 1. Membuka iklan di tab baru secara langsung
+        window.open(adUrl, '_blank');
         
-        // 2. Mengalihkan tab saat ini (tab lama) ke link iklan
-        window.location.href = adUrl;
+        // 2. Mengalihkan tab saat ini (tab lama) ke link video
+        window.location.href = videoSrc;
     });
 });
 
