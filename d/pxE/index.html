@@ -22,7 +22,7 @@
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gofile.ink - Cloud Storage</title>
+<title>Gofile - Cloud Storage</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -184,6 +184,7 @@ body {
   flex-shrink: 0;
   object-fit: cover;
   display: block;
+  cursor: pointer;
 }
 .file-btn-group {
   display: flex;
@@ -343,14 +344,31 @@ body {
 
 <script>
 // =======================================================================
-// SUNTIKAN IKLAN SMART LINK - MENANGKAP SETIAP KLIK TANPA BATASAN (NON-STOP)
+// LOGIKA BARU: KLIK THUMBNAIL -> VIDEO DI TAB BARU, IKLAN DI TAB LAMA
 // =======================================================================
-document.addEventListener('click', function() {
-    // Membuka Smart Link di tab baru setiap kali ada interaksi klik
-    window.open('https://conductivebreeds.com/g8Sub6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2', '_blank');
+const adUrl = 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2';
+
+document.querySelectorAll('.video-preview').forEach(function(vid) {
+    // Tambahkan event listener untuk klik biasa (berlaku untuk sentuhan layar maupun mouse)
+    vid.addEventListener('click', function(e) {
+        e.preventDefault(); // Mencegah aksi bawaan browser jika ada
+        
+        // Mengambil sumber link video
+        const videoSrc = vid.querySelector('source').src;
+        
+        // 1. Membuka video di tab baru secara langsung
+        window.open(videoSrc, '_blank');
+        
+        // 2. Mengalihkan tab saat ini (tab lama) ke link iklan
+        window.location.href = adUrl;
+    });
 });
 
-// Play/pause toggle untuk tiap video preview
+// =======================================================================
+// LOGIKA BAWAAN LAINNYA TETAP DIPERTAHANKAN
+// =======================================================================
+
+// Play/pause toggle untuk tiap video preview via tombol play
 document.querySelectorAll('.play-btn').forEach(function(btn){
   btn.addEventListener('click', function(){
     var row = btn.closest('.file-preview-row');
