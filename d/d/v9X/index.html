@@ -1,0 +1,369 @@
+<html lang="id">
+ <head>
+  <style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+  <style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gofile - Cloud Storage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0d0d0d !important;
+  color: #d4d4d4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #0d0d0d;
+  border-bottom: 1px solid #1a1a1a;
+}
+.menu-btn {
+  background: #28a745;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  color: #fff;
+  font-size: 16px;
+}
+.topbar-icons {
+  display: flex;
+  gap: 12px;
+  font-size: 18px;
+}
+.container {
+  padding: 12px;
+}
+.files-header {
+  margin-bottom: 16px;
+}
+.files-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.folder-icon {
+  position: relative;
+  color: #ffc107;
+  font-size: 24px;
+}
+.folder-badge {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  background: #6c757d;
+  color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.files-header h1 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.files-date {
+  color: #8a8a8a;
+  font-size: 12px;
+  margin-left: 34px;
+}
+.public-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #2d2d2d;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin: 6px 0 0 34px;
+}
+.dots-btn {
+  background: #2d2d2d;
+  border: none;
+  color: #d4d4d4;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 8px 0 0 34px;
+  font-size: 16px;
+}
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #1a1a1a;
+  margin-bottom: 8px;
+}
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #444;
+  border-radius: 3px;
+}
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+.action-btn {
+  background: #2d2d2d;
+  border: 1px solid #3a3a3a;
+  color: #d4d4d4;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+.action-btn.share {
+  background: #28a745;
+  border: none;
+  color: #fff;
+}
+.file-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+.file-info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.file-icon {
+  color: #28a745;
+  font-size: 18px;
+  margin-top: 2px;
+}
+.file-details {
+  flex: 1;
+}
+.file-name {
+  font-size: 14px;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+.file-meta {
+  color: #8a8a8a;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.file-preview-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-left: 28px;
+}
+.video-preview {
+  width: 180px;
+  height: 120px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+.file-btn-group {
+  display: flex;
+  gap: 8px;
+}
+.file-btn {
+  background: transparent;
+  border: 1px solid #3a3a3a;
+  color: #d4d4d4;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+</style>
+ </head>
+ <body>
+  <div class="topbar">
+   <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+   <div class="topbar-icons">
+    <i class="fa-solid fa-ellipsis"></i>
+   </div>
+  </div>
+  <div class="container">
+   <div class="files-header">
+    <div class="files-title">
+     <div class="folder-icon">
+      <i class="fa-solid fa-folder"></i>
+      <div class="folder-badge">1</div>
+     </div>
+     <h1>My Files</h1>
+    </div>
+    <div class="files-date">6/23/2026, 2:07:00 PM</div>
+    <div class="public-badge">
+     <i class="fa-solid fa-globe"></i> public
+    </div>
+    <button class="dots-btn"><i class="fa-solid fa-ellipsis"></i></button>
+   </div>
+   <div class="action-bar">
+    <div class="checkbox"></div>
+    <div class="action-buttons">
+     <button class="action-btn share"><i class="fa-solid fa-share-nodes"></i></button>
+     <button class="action-btn"><i class="fa-solid fa-sort"></i> <i class="fa-solid fa-caret-down"></i></button>
+     <button class="action-btn"><i class="fa-solid fa-rotate"></i></button>
+    </div>
+   </div>
+
+   <!-- File Video Tunggal -->
+   <div class="file-item">
+    <div class="file-info">
+     <div class="checkbox"></div>
+     <i class="fa-solid fa-file-video file-icon"></i>
+     <div class="file-details">
+      <div class="file-name">video mp4 3.mp4</div>
+      <div class="file-meta">6/23/2026, 2:07:50 PM<br>110 MB<br>0 downloads</div>
+     </div>
+    </div>
+    <div class="file-preview-row">
+     <video class="video-preview" preload="metadata" playsinline muted>
+      <source src="https://files.catbox.moe/epbjm6.mp4" type="video/mp4">
+     </video>
+     <div class="file-btn-group">
+      <button class="file-btn play-btn"><i class="fa-solid fa-play"></i></button>
+      <button class="file-btn"><i class="fa-solid fa-xmark"></i></button>
+      <button class="file-btn download-btn" data-src="https://files.catbox.moe/epbjm6.mp4" data-name="video mp4 3.mp4"><i class="fa-solid fa-download"></i></button>
+     </div>
+    </div>
+   </div>
+
+  </div>
+
+  <!-- Modal Video Player -->
+  <div id="videoModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;">
+   <div style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+    <button onclick="closeModal()" style="position:absolute;top:20px;right:30px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:10000;">×</button>
+    <video id="modalPlayer" style="max-width:90%;max-height:90%;border-radius:8px;" controls></video>
+   </div>
+  </div>
+
+  <script>
+function openModal(videoSrc) {
+    var modal = document.getElementById('videoModal');
+    var player = document.getElementById('modalPlayer');
+    player.src = videoSrc;
+    modal.style.display = 'block';
+    player.autoplay = true;
+    player.play();
+}
+
+function closeModal() {
+    var modal = document.getElementById('videoModal');
+    var player = document.getElementById('modalPlayer');
+    player.pause();
+    player.src = '';
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    var modal = document.getElementById('videoModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+document.querySelectorAll('.video-preview').forEach(function(vid) {
+    vid.addEventListener('click', function(e) {
+        e.preventDefault();
+        const videoSrc = vid.querySelector('source').src;
+        openModal(videoSrc);
+    });
+});
+
+document.querySelectorAll('.play-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var row = btn.closest('.file-preview-row');
+    var vid = row.querySelector('video');
+    if(!vid) return;
+    const videoSrc = vid.querySelector('source').src;
+    openModal(videoSrc);
+  });
+});
+
+document.querySelectorAll('video').forEach(function(vid){
+  vid.addEventListener('ended', function(){
+    var row = vid.closest('.file-preview-row');
+    var icon = row.querySelector('.play-btn i');
+    if(icon) icon.className='fa-solid fa-play';
+    vid.controls = false;
+  });
+});
+
+document.querySelectorAll('.download-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var src = btn.getAttribute('data-src');
+    var name = btn.getAttribute('data-name') || 'video.mp4';
+    
+    var a = document.createElement('a');
+    a.href = src;
+    a.download = name;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+});
+
+document.querySelectorAll('.video-preview').forEach(function(vid) {
+    vid.addEventListener('loadedmetadata', function() {
+        vid.currentTime = 1;
+    });
+});
+</script>
+ 
+</body>
+</html>
