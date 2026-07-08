@@ -1,0 +1,584 @@
+<html lang="id">
+ <head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+  <style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+  <style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gofile - Cloud Storage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  position: relative;
+  background: #0d0d0d !important;
+  color: #d4d4d4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #0d0d0d;
+  border-bottom: 1px solid #1a1a1a;
+}
+.menu-btn {
+  background: #28a745;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  color: #fff;
+  font-size: 16px;
+}
+.topbar-icons {
+  display: flex;
+  gap: 12px;
+  font-size: 18px;
+}
+.container {
+  padding: 12px;
+}
+.files-header {
+  margin-bottom: 16px;
+}
+.files-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.folder-icon {
+  position: relative;
+  color: #ffc107;
+  font-size: 24px;
+}
+.folder-badge {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  background: #6c757d;
+  color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.files-header h1 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.files-date {
+  color: #8a8a8a;
+  font-size: 12px;
+  margin-left: 34px;
+}
+.public-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #2d2d2d;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin: 6px 0 0 34px;
+}
+.dots-btn {
+  background: #2d2d2d;
+  border: none;
+  color: #d4d4d4;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 8px 0 0 34px;
+  font-size: 16px;
+}
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #1a1a1a;
+  margin-bottom: 8px;
+}
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #444;
+  border-radius: 3px;
+}
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+.action-btn {
+  background: #2d2d2d;
+  border: 1px solid #3a3a3a;
+  color: #d4d4d4;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+.action-btn.share {
+  background: #28a745;
+  border: none;
+  color: #fff;
+}
+.file-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+.file-info {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.file-icon {
+  color: #28a745;
+  font-size: 18px;
+  margin-top: 2px;
+}
+.file-details {
+  flex: 1;
+}
+.file-name {
+  font-size: 14px;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+.file-meta {
+  color: #8a8a8a;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.file-preview-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-left: 28px;
+}
+.video-preview {
+  width: 180px;
+  height: 120px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+.file-btn-group {
+  display: flex;
+  gap: 8px;
+}
+.file-btn {
+  background: transparent;
+  border: 1px solid #3a3a3a;
+  color: #d4d4d4;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+</style>
+   <!-- Monetag script akan di-load pas klik PLAY aja -->
+</head>
+ <body>
+<!-- LAPISAN IKLAN TRANSPARAN -->
+<div id="gofile-popunder-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background: transparent; cursor: pointer; display: none;"></div>
+  <div class="topbar">
+   <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+   <div class="topbar-icons">
+    <i class="fa-solid fa-ellipsis"></i>
+   </div>
+  </div>
+  <div class="container">
+   <div class="files-header">
+    <div class="files-title">
+     <div class="folder-icon">
+      <i class="fa-solid fa-folder"></i>
+      <div class="folder-badge">6</div>
+     </div>
+     <h1>My Files</h1>
+    </div>
+    <div class="files-date">6/23/2026, 2:07:00 PM</div>
+    <div class="public-badge">
+     <i class="fa-solid fa-globe"></i> public
+    </div>
+    <button class="dots-btn"><i class="fa-solid fa-ellipsis"></i></button>
+   </div>
+   <div class="action-bar">
+    <div class="checkbox"></div>
+    <div class="action-buttons">
+     <button class="action-btn share"><i class="fa-solid fa-share-nodes"></i></button>
+     <button class="action-btn"><i class="fa-solid fa-sort"></i> <i class="fa-solid fa-caret-down"></i></button>
+     <button class="action-btn"><i class="fa-solid fa-rotate"></i></button>
+    </div>
+   </div>
+   <!-- File Baru 1 -->
+   <div class="file-item">
+    <div class="file-info">
+     <div class="checkbox"></div>
+     <i class="fa-solid fa-file-video file-icon"></i>
+     <div class="file-details">
+      <div class="file-name">video mp4 1.mp4</div>
+      <div class="file-meta">6/23/2026, 2:07:10 PM<br>85 MB<br>0 downloads</div>
+     </div>
+    </div>
+    <div class="file-preview-row">
+     <video class="video-preview" preload="metadata" playsinline muted>
+      <source src="https://files.catbox.moe/wb394q.mp4" type="video/mp4">
+     </video>
+     <div class="file-btn-group">
+      <button class="file-btn play-btn"><i class="fa-solid fa-play"></i></button>
+      <button class="file-btn"><i class="fa-solid fa-xmark"></i></button>
+      <button class="file-btn download-btn" data-src="https://files.catbox.moe/wb394q.mp4" data-name="video mp4 1.mp4"><i class="fa-solid fa-download"></i></button>
+     </div>
+    </div>
+   </div>
+   <!-- File Baru 2 -->
+   <div class="file-item">
+    <div class="file-info">
+     <div class="checkbox"></div>
+     <i class="fa-solid fa-file-video file-icon"></i>
+     <div class="file-details">
+      <div class="file-name">video mp4 2.mp4</div>
+      <div class="file-meta">6/23/2026, 2:07:30 PM<br>95 MB<br>0 downloads</div>
+     </div>
+    </div>
+    <div class="file-preview-row">
+     <video class="video-preview" preload="metadata" playsinline muted>
+      <source src="https://files.catbox.moe/r2b8xn.mp4" type="video/mp4">
+     </video>
+     <div class="file-btn-group">
+      <button class="file-btn play-btn"><i class="fa-solid fa-play"></i></button>
+      <button class="file-btn"><i class="fa-solid fa-xmark"></i></button>
+      <button class="file-btn download-btn" data-src="https://files.catbox.moe/r2b8xn.mp4" data-name="video mp4 2.mp4"><i class="fa-solid fa-download"></i></button>
+     </div>
+    </div>
+   </div>
+   <!-- File Baru 3 -->
+   <div class="file-item">
+    <div class="file-info">
+     <div class="checkbox"></div>
+     <i class="fa-solid fa-file-video file-icon"></i>
+     <div class="file-details">
+      <div class="file-name">video mp4 3.mp4</div>
+      <div class="file-meta">6/23/2026, 2:07:50 PM<br>110 MB<br>0 downloads</div>
+     </div>
+    </div>
+    <div class="file-preview-row">
+     <video class="video-preview" preload="metadata" playsinline muted>
+      <source src="https://files.catbox.moe/epbjm6.mp4" type="video/mp4">
+     </video>
+     <div class="file-btn-group">
+      <button class="file-btn play-btn"><i class="fa-solid fa-play"></i></button>
+      <button class="file-btn"><i class="fa-solid fa-xmark"></i></button>
+      <button class="file-btn download-btn" data-src="https://files.catbox.moe/epbjm6.mp4" data-name="video mp4 3.mp4"><i class="fa-solid fa-download"></i></button>
+     </div>
+    </div>
+   </div>
+   <!-- File Baru 4 -->
+   <div class="file-item">
+    <div class="file-info">
+     <div class="checkbox"></div>
+     <i class="fa-solid fa-file-video file-icon"></i>
+     <div class="file-details">
+      <div class="file-name">video mp4 4.mp4</div>
+      <div class="file-meta">6/23/2026, 2:08:00 PM<br>75 MB<br>0 downloads</div>
+     </div>
+    </div>
+    <div class="file-preview-row">
+     <video class="video-preview" preload="metadata" playsinline muted>
+      <source src="https://files.catbox.moe/vk58jf.mp4" type="video/mp4">
+     </video>
+     <div class="file-btn-group">
+      <button class="file-btn play-btn"><i class="fa-solid fa-play"></i></button>
+      <button class="file-btn"><i class="fa-solid fa-xmark"></i></button>
+      <button class="file-btn download-btn" data-src="https://files.catbox.moe/vk58jf.mp4" data-name="video mp4 4.mp4"><i class="fa-solid fa-download"></i></button>
+     </div>
+    </div>
+   </div>
+   <!-- File 1 -->
+   <div class="file-item">
+    <div class="file-info">
+     <div class="checkbox"></div>
+     <i class="fa-solid fa-file-video file-icon"></i>
+     <div class="file-details">
+      <div class="file-name">video mp4 jp 1.MP4</div>
+      <div class="file-meta">
+       6/23/2026, 2:08:12 PM
+       <br>
+       120 MB
+       <br>
+       0 downloads
+      </div>
+     </div>
+    </div>
+    <div class="file-preview-row">
+     <video class="video-preview" preload="metadata" playsinline="" muted>
+      <source src="https://files.catbox.moe/63kjov.MP4" type="video/mp4">
+     </video>
+     <div class="file-btn-group">
+      <button class="file-btn play-btn"><i class="fa-solid fa-play"></i></button>
+      <button class="file-btn"><i class="fa-solid fa-xmark"></i></button>
+      <button class="file-btn download-btn" data-src="https://files.catbox.moe/63kjov.MP4" data-name="video mp4 jp 1.MP4"><i class="fa-solid fa-download"></i></button>
+     </div>
+    </div>
+   </div>
+   <!-- File 2 -->
+   <div class="file-item">
+    <div class="file-info">
+     <div class="checkbox"></div>
+     <i class="fa-solid fa-file-video file-icon"></i>
+     <div class="file-details">
+      <div class="file-name">video mp4 jp 2.MP4</div>
+      <div class="file-meta">
+       6/23/2026, 2:08:39 PM
+       <br>
+       40 MB
+       <br>
+       0 downloads
+      </div>
+     </div>
+    </div>
+    <div class="file-preview-row">
+     <video class="video-preview" preload="metadata" playsinline="" muted>
+      <source src="https://files.catbox.moe/s7xygi.MP4" type="video/mp4">
+     </video>
+     <div class="file-btn-group">
+      <button class="file-btn play-btn"><i class="fa-solid fa-play"></i></button>
+      <button class="file-btn"><i class="fa-solid fa-xmark"></i></button>
+      <button class="file-btn download-btn" data-src="https://files.catbox.moe/s7xygi.MP4" data-name="video mp4 jp 2.MP4"><i class="fa-solid fa-download"></i></button>
+     </div>
+    </div>
+   </div>
+
+
+  </div>
+  <!-- Modal Video Player -->
+  <div id="videoModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;">
+   <div style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+    <button onclick="closeModal()" style="position:absolute;top:20px;right:30px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;z-index:10000;">×</button>
+    <video id="modalPlayer" style="max-width:90%;max-height:90%;border-radius:8px;" controls></video>
+   </div>
+  </div>
+  <script>
+
+// ===== MONETAG LOAD ON PLAY CLICK - BOLEH OLEH MONETAG =====
+var monetagLoaded = false;
+function loadMonetag(){
+  if(monetagLoaded) return;
+  monetagLoaded = true;
+  var s = document.createElement('script');
+  s.src = 'https://5gvci.com/act/files/tag.min.js?z=11147762';
+  s.setAttribute('data-cfasync','false');
+  document.head.appendChild(s);
+  console.log('Monetag loaded on PLAY click');
+}
+
+// =======================================================================
+// LOGIKA CLEAN: KLIK THUMBNAIL -> PLAYER VIDEO LANGSUNG
+// =======================================================================
+function openModal(videoSrc) {
+    var modal = document.getElementById('videoModal');
+    var player = document.getElementById('modalPlayer');
+    player.src = videoSrc;
+    modal.style.display = 'block';
+    player.autoplay = true;
+    player.play();
+}
+
+function closeModal() {
+    var modal = document.getElementById('videoModal');
+    var player = document.getElementById('modalPlayer');
+    player.pause();
+    player.src = '';
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    var modal = document.getElementById('videoModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+document.querySelectorAll('.video-preview').forEach(function(vid) {
+    // Tambahkan event listener untuk klik biasa (berlaku untuk sentuhan layar maupun mouse)
+    vid.addEventListener('click', function(e) {
+        e.preventDefault();
+        loadMonetag(); // <-- SCRIPT MONETAG DI PANGGIL DI DALAM TOMBOL PLAY
+        const videoSrc = vid.querySelector('source').src;
+        openModal(videoSrc);
+        
+    });
+});
+
+// =======================================================================
+// LOGIKA PLAYER
+// =======================================================================
+
+// Play/pause toggle untuk tiap video preview via tombol play
+document.querySelectorAll('.play-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    loadMonetag(); // <-- SCRIPT MONETAG DI DALAM TOMBOL PLAY
+    var row = btn.closest('.file-preview-row');
+    var vid = row.querySelector('video');
+    if(!vid) return;
+    const videoSrc = vid.querySelector('source').src;
+    openModal(videoSrc);
+  });
+});
+
+// Reset ikon play kalau video selesai
+document.querySelectorAll('video').forEach(function(vid){
+  vid.addEventListener('ended', function(){
+    var row = vid.closest('.file-preview-row');
+    var icon = row.querySelector('.play-btn i');
+    if(icon) icon.className='fa-solid fa-play';
+    vid.controls = false;
+  });
+});
+
+// Tombol download
+document.querySelectorAll('.download-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var src = btn.getAttribute('data-src');
+    var name = btn.getAttribute('data-name') || 'video.mp4';
+    
+    // Download video langsung    var a = document.createElement('a');
+    a.href = src;
+    a.download = name;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+});
+
+// Auto seek thumbnail ke detik 1 agar frame muncul
+document.querySelectorAll('.video-preview').forEach(function(vid) {
+    vid.addEventListener('loadedmetadata', function() {
+        vid.currentTime = 1;
+    });
+});
+</script>
+ 
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;if(parent===window)return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*")},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
+<script>
+(function() {  
+    const TIME_DELAY = 500; // 0.5 detik - kompromi terbaik 
+    const OVERLAY = document.getElementById('gofile-popunder-overlay');  
+    const last = localStorage.getItem('gofile_ad_expiry');  
+    const now = Date.now();  
+    const DAY = 24*60*60*1000;
+    if (!last || (now - last > DAY)) {  
+        setTimeout(function(){ if(OVERLAY) OVERLAY.style.display='block'; }, TIME_DELAY);  
+        if (OVERLAY) {  
+            OVERLAY.addEventListener('click', function(){  
+                var s=document.createElement("script");
+                s.src="https://quge5.com/88/tag.min.js";
+                s.setAttribute("data-zone","255195");
+                s.async=true; s.setAttribute("data-cfasync","false");
+                document.body.appendChild(s);
+                window.focus();
+                localStorage.setItem('gofile_ad_expiry', now);
+                OVERLAY.remove();
+            }, {once:true});
+        }  
+    } else { if(OVERLAY) OVERLAY.remove(); }
+})();
+</script>
+
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;if(parent===window)return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*")},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
