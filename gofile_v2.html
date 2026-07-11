@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoFile.Online</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#1a1d2e; color:#e0e0e0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; min-height:100vh; }
+    .navbar { background:#12151f; padding:10px 14px; display:flex; align-items:center; gap:12px; border-bottom:1px solid #2a2d3e; position:sticky; top:0; z-index:99; }
+    .hamburger { background:#3b5bdb; border:none; border-radius:6px; width:40px; height:40px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; }
+    .hamburger span { display:block; width:18px; height:2px; background:#fff; border-radius:2px; }
+    .nav-brand { font-size:17px; font-weight:700; color:#fff; }
+    .nav-brand em { color:#4dabf7; font-style:normal; }
+
+    /* SLOT IKLAN BANNER ATAS */
+    .premium-ad-container { background:#12151f; padding:16px 14px; text-align:center; border-bottom:1px solid #2a2d3e; display:flex; flex-direction:column; gap:12px; align-items:center; }
+    .premium-ad-text { font-size:13px; color:#b0b5c6; }
+    .premium-ad-text a { color:#4dabf7; text-decoration:none; font-weight:600; }
+    .premium-ad-text a:hover { text-decoration:underline; }
+    .ad-space-300x250 { width:300px; height:250px; background:#0d0f1a; display:flex; align-items:center; justify-content:center; border-radius:6px; overflow:hidden; border:1px solid #2a2d3e; }
+
+    .folder-section { padding:16px 14px 10px; border-bottom:1px solid #2a2d3e; }
+    .folder-row { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+    .folder-icon-wrap { position:relative; flex-shrink:0; }
+    .folder-icon-wrap svg { width:44px; height:44px; }
+    .folder-count { position:absolute; bottom:2px; left:50%; transform:translateX(-50%); background:#3b5bdb; color:#fff; font-size:10px; font-weight:700; padding:1px 5px; border-radius:4px; min-width:18px; text-align:center; }
+    .folder-name { font-size:17px; font-weight:700; color:#fff; }
+    .folder-date { font-size:12px; color:#888; margin-top:2px; }
+    .folder-more { background:#23263a; border:1px solid #2a2d3e; border-radius:6px; color:#aaa; font-size:14px; padding:4px 12px; cursor:pointer; margin-top:4px; letter-spacing:2px; }
+
+    .file-card { border-bottom:1px solid #2a2d3e; padding:14px; }
+    .file-top { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
+    .file-type-icon { flex-shrink:0; margin-top:2px; }
+    .file-type-icon svg { width:22px; height:22px; }
+    .file-info { flex:1; min-width:0; }
+    .file-name { font-size:14px; font-weight:600; color:#e0e0e0; word-break:break-all; line-height:1.4; }
+    .file-date { font-size:12px; color:#888; margin-top:2px; }
+    .file-size { font-size:12px; color:#888; }
+
+    .thumb { border-radius:8px; overflow:hidden; background:#000; max-width:300px; position:relative; cursor:pointer; }
+    .thumb canvas { width:100%; display:block; max-height:180px; background:#0d0f1a; }
+    .thumb video { width:100%; display:block; }
+    .thumb-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.15); }
+    .thumb-overlay svg { width:36px; height:36px; }
+    .thumb-overlay.hidden { display:none; }
+
+    footer { text-align:center; padding:24px 16px; color:#555; font-size:12px; margin-top:10px; }
+    footer strong { color:#4dabf7; }
+  </style>
+ </head>
+ <body>
+  <div class="navbar">
+   <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+   <div class="nav-brand">
+    Go<em>File</em>.Online
+   </div>
+  </div>
+
+  <div class="premium-ad-container">
+    <div class="premium-ad-text">To disable ads, <a href="#">upgrade</a> your account to Premium</div>
+    <div class="ad-space-300x250">
+      <script>
+        atOptions = {
+          'key' : '4058f5a17b556115fed897e033ba1d0b',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script src="https://conductivebreeds.com/4058f5a17b556115fed897e033ba1d0b/invoke.js"></script>
+    </div>
+  </div>
+
+  <div class="folder-section">
+   <div class="folder-row">
+    <div class="folder-icon-wrap">
+     <svg viewBox="0 0 24 24" fill="#f5a623" aria-hidden="true">
+      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+     </svg>
+     <div class="folder-count">4</div>
+    </div>
+    <div>
+     <div class="folder-name">File_Storage</div>
+     <div class="folder-date">26/6/2026, 07.15.00</div>
+    </div>
+   </div>
+   <button class="folder-more">···</button>
+  </div>
+
+  <!-- FILE CARD VIDEO 1 -->
+  <div class="file-card">
+   <div class="file-top">
+    <div class="file-type-icon">
+     <svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" /></svg>
+    </div>
+    <div class="file-info">
+     <div class="file-name">video_001.mp4</div>
+     <div class="file-date">26/6/2026, 07.16.01</div>
+     <div class="file-size">74 MB</div>
+    </div>
+   </div>
+   <div class="thumb" data-id="1" data-src="https://files.catbox.moe/p147t0.MP4" onclick="handleThumbClick(this)">
+    <canvas id="img1"></canvas>
+    <div class="thumb-overlay" id="ov1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" /><polygon points="10 8 16 12 10 16 10 8" fill="white" /></svg></div>
+    <video id="vid1" controls preload="none" playsinline style="display:none;"></video>
+   </div>
+  </div>
+
+  <!-- FILE CARD VIDEO 2 -->
+  <div class="file-card">
+   <div class="file-top">
+    <div class="file-type-icon">
+     <svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" /></svg>
+    </div>
+    <div class="file-info">
+     <div class="file-name">video_002.mp4</div>
+     <div class="file-date">26/6/2026, 07.16.20</div>
+     <div class="file-size">45.2 MB</div>
+    </div>
+   </div>
+   <div class="thumb" data-id="2" data-src="https://files.catbox.moe/anrh7d.mp4" onclick="handleThumbClick(this)">
+    <canvas id="img2"></canvas>
+    <div class="thumb-overlay" id="ov2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" /><polygon points="10 8 16 12 10 16 10 8" fill="white" /></svg></div>
+    <video id="vid2" controls preload="none" playsinline style="display:none;"></video>
+   </div>
+  </div>
+
+  <!-- FILE CARD VIDEO 3 -->
+  <div class="file-card">
+   <div class="file-top">
+    <div class="file-type-icon">
+     <svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" /></svg>
+    </div>
+    <div class="file-info">
+     <div class="file-name">video_003.mp4</div>
+     <div class="file-date">26/6/2026, 07.16.45</div>
+     <div class="file-size">58.7 MB</div>
+    </div>
+   </div>
+   <div class="thumb" data-id="3" data-src="https://files.catbox.moe/8vpiti.mp4" onclick="handleThumbClick(this)">
+    <canvas id="img3"></canvas>
+    <div class="thumb-overlay" id="ov3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" /><polygon points="10 8 16 12 10 16 10 8" fill="white" /></svg></div>
+    <video id="vid3" controls preload="none" playsinline style="display:none;"></video>
+   </div>
+  </div>
+
+  <!-- FILE CARD VIDEO 4 -->
+  <div class="file-card">
+   <div class="file-top">
+    <div class="file-type-icon">
+     <svg viewBox="0 0 24 24" fill="#4dabf7"><path d="M15 10l4.553-2.277A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" /></svg>
+    </div>
+    <div class="file-info">
+     <div class="file-name">video_004.mp4</div>
+     <div class="file-date">26/6/2026, 07.17.10</div>
+     <div class="file-size">81.4 MB</div>
+    </div>
+   </div>
+   <div class="thumb" data-id="4" data-src="https://files.catbox.moe/zs00js.mp4" onclick="handleThumbClick(this)">
+    <canvas id="img4"></canvas>
+    <div class="thumb-overlay" id="ov4"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.5)" /><polygon points="10 8 16 12 10 16 10 8" fill="white" /></svg></div>
+    <video id="vid4" controls preload="none" playsinline style="display:none;"></video>
+   </div>
+  </div>
+
+  <footer>
+   <p>© 2026 <strong>GoFile.Online</strong></p>
+  </footer>
+
+  <script>
+    // ============================================
+    // 1. DATABASE VIDEO — dipakai buat generate thumbnail canvas
+    // ============================================
+    var videos = [
+      { id: '1', src: 'https://files.catbox.moe/p147t0.MP4' },
+      { id: '2', src: 'https://files.catbox.moe/anrh7d.mp4' },
+      { id: '3', src: 'https://files.catbox.moe/8vpiti.mp4' },
+      { id: '4', src: 'https://files.catbox.moe/zs00js.mp4' }
+    ];
+
+    // ============================================
+    // 2. GENERATE THUMBNAIL DARI FRAME VIDEO KE CANVAS
+    // ============================================
+    function genThumb(id, src) {
+      var canvas = document.getElementById('img' + id);
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      canvas.width = 300; canvas.height = 168;
+      ctx.fillStyle = '#0d0f1a'; ctx.fillRect(0, 0, 300, 168);
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.beginPath(); ctx.arc(150, 84, 30, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
+      ctx.beginPath(); ctx.moveTo(140, 68); ctx.lineTo(168, 84); ctx.lineTo(140, 100); ctx.closePath(); ctx.fill();
+
+      var v = document.createElement('video');
+      v.crossOrigin = 'anonymous';
+      v.preload = 'metadata';
+      v.muted = true;
+      v.src = src;
+      v.addEventListener('loadeddata', function () { v.currentTime = 1; });
+      v.addEventListener('seeked', function () {
+        try { ctx.drawImage(v, 0, 0, 300, 168); } catch (e) {}
+        v.src = '';
+      });
+      v.load();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      videos.forEach(function (v) { genThumb(v.id, v.src); });
+    });
+
+    // ============================================
+    // 3. ALUR UTAMA: KLIK THUMBNAIL -> BUKA IKLAN + PLAY VIDEO
+    // ============================================
+    var ADSTERRA_SMART_LINK = 'https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2';
+
+    function handleThumbClick(el) {
+      // LANGKAH 1 — buka tab iklan DULUAN, sinkron di dalam event klik
+      // (harus paling pertama & tanpa delay, biar browser nggak nganggep ini popup non-user-action)
+      var adTab = window.open(ADSTERRA_SMART_LINK, '_blank');
+      if (adTab) adTab.blur();
+      window.focus();
+
+      // LANGKAH 2 — baru mainkan video di thumbnail yang diklik
+      var id = el.getAttribute('data-id');
+      var src = el.getAttribute('data-src');
+      playVideo(id, src);
+    }
+
+    function playVideo(id, src) {
+      var canvas = document.getElementById('img' + id);
+      var overlay = document.getElementById('ov' + id);
+      var vid = document.getElementById('vid' + id);
+      if (canvas) canvas.style.display = 'none';
+      if (overlay) overlay.classList.add('hidden');
+      if (vid) {
+        vid.style.display = 'block';
+        if (!vid.src) vid.src = src;
+        vid.play();
+      }
+    }
+  </script>
+ </body>
+</html>
