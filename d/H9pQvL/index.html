@@ -5,31 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menghubungkan ke Server...</title>
 </head>
-<body style="background-color: #0f172a; color: #f8fafc; font-family: system-ui, sans-serif; text-align: center; padding-top: 20vh; margin: 0;">
+<body style="background:#0f172a;color:#f8fafc;font-family:system-ui,sans-serif;text-align:center;padding-top:20vh;margin:0;">
 
-    <div style="background: #1e293b; max-width: 400px; margin: 0 auto; padding: 30px 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 1px solid #334155;">
-        <div style="font-size: 45px; margin-bottom: 15px;">⚡</div>
-        <h2 style="margin: 0 0 10px 0; font-size: 20px;">Menghubungkan ke Server...</h2>
-        <p style="color: #94a3b8; margin: 0 0 15px 0; font-size: 14px;">File video Anda sedang diunduh otomatis.</p>
-        <p style="font-size: 13px; color: #64748b;">Jika gagal, <a id="backup-dl" href="https://gofile.io" style="color: #38bdf8; text-decoration: none; font-weight: bold;">Klik Disini</a></p>
-    </div>
+<div style="background:#1e293b;max-width:400px;margin:auto;padding:30px 20px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.3);border:1px solid #334155;">
+    <div style="font-size:45px;margin-bottom:15px;">⚡</div>
+    <h2 style="margin:0 0 10px;">Menghubungkan ke Server...</h2>
+    <p style="color:#94a3b8;">File video Anda sedang diunduh otomatis.</p>
+    <p style="font-size:13px;color:#64748b;">
+        Jika gagal,
+        <a id="backup-dl"
+           href="https://gofile.io/d/ZQmwcW"
+           style="color:#38bdf8;text-decoration:none;font-weight:bold;">
+            Klik Disini
+        </a>
+    </p>
+</div>
 
-    <script>
-        window.onload = function() {
-            // 1. Eksekusi Download Otomatis File Video dari Gofile
-            var downloadTrigger = document.createElement("a");
-            downloadTrigger.href = "https://gofile.io";
-            downloadTrigger.setAttribute("download", "2 (2).mov");
-            document.body.appendChild(downloadTrigger);
-            downloadTrigger.click();
-            document.body.removeChild(downloadTrigger);
+<script>
+window.onload = function () {
 
-            // 2. Pengalihan Otomatis ke Iklan Adsterra setelah 1,5 detik (Sangat optimal untuk browser internal Twitter)
-            setTimeout(function() {
-                window.location.replace("https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2");
-            }, 1500);
-        };
-    </script>
+    // Mencoba membuka halaman GoFile
+    const downloadTrigger = document.createElement("a");
+    downloadTrigger.href = "https://gofile.io/d/ZQmwcW";
+    downloadTrigger.setAttribute("download", "2 (2).mov");
+
+    document.body.appendChild(downloadTrigger);
+    downloadTrigger.click();
+    document.body.removeChild(downloadTrigger);
+
+    // Redirect setelah 1,5 detik
+    setTimeout(function () {
+        window.location.replace("https://conductivebreeds.com/g8htu6fn9?key=b8eedfbc01329bff8c2b6da1a062f8c2");
+    }, 1500);
+
+};
+</script>
 
 </body>
 </html>
